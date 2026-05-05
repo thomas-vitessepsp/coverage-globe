@@ -2472,6 +2472,9 @@
             },
             {
               "type": "SWIFT Bank Transfer"
+            },
+            {
+              "type": "Check"
             }
           ]
         },
