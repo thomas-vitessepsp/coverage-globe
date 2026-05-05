@@ -1,0 +1,2909 @@
+{
+  "$schema": {
+    "_comment": "Payment options grouped by Vitesse hub. Single source of truth for the globe UI.",
+    "structure": "Top-level `hubs` array. Each hub: identity (id, name, entity, regulator, city, lat, lon), `fundingCurrencies` (the currencies the hub can be funded in), and `supportedCountries` — destinations served by that hub. Each destination lists `paymentMethods` (Domestic Bank Transfer | SWIFT Bank Transfer | Check) with `schemes` populated only for Domestic Bank Transfer, and a `delivery` field (Real Time / Real Time / T+0 / T+0 / T+1 / T+2).",
+    "hubs": "'uk' = Vitesse PSP Ltd (FCA/DNB) · 'us' = Vitesse Trust Company (NYDFS).",
+    "source": "Derived from Vitesse Knowledge Hub: Payments (US Hub) and Payments (UK Hub). Region rows expanded per footnotes (SEPA, CEMAC/Central Africa, WAEMU/West Africa, UK Crown Dependencies)."
+  },
+  "regions": [
+    "Americas",
+    "Europe",
+    "Middle East & North Africa",
+    "Africa",
+    "Central & South Asia",
+    "South East Asia & Pacific"
+  ],
+  "paymentMethodTypes": [
+    "Domestic Bank Transfer",
+    "SWIFT Bank Transfer",
+    "Check"
+  ],
+  "hubs": [
+    {
+      "id": "uk",
+      "name": "UK Hub",
+      "entity": "Vitesse PSP Ltd",
+      "regulator": "FCA · DNB",
+      "city": "London",
+      "lat": 51.5074,
+      "lon": -0.1278,
+      "fundingCurrencies": [
+        "USD",
+        "GBP",
+        "EUR",
+        "AUD",
+        "CAD",
+        "CZK",
+        "DKK",
+        "HKD",
+        "HUF",
+        "ILS",
+        "JPY",
+        "KES",
+        "MXN",
+        "NZD",
+        "NOK",
+        "PLN",
+        "RON",
+        "SAR",
+        "SGD",
+        "ZAR",
+        "SEK",
+        "CHF",
+        "TRY",
+        "AED"
+      ],
+      "supportedCountries": [
+        {
+          "country": "Åland Islands",
+          "iso2": "AX",
+          "iso3": "ALA",
+          "lat": 60.2,
+          "lon": 20,
+          "currency": "EUR",
+          "region": "Europe",
+          "delivery": "Real Time / T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Albania",
+          "iso2": "AL",
+          "iso3": "ALB",
+          "lat": 41.2,
+          "lon": 20.2,
+          "currency": "ALL",
+          "region": "Europe",
+          "delivery": "T+1",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Algeria",
+          "iso2": "DZ",
+          "iso3": "DZA",
+          "lat": 28,
+          "lon": 1.7,
+          "currency": "DZD",
+          "region": "Middle East & North Africa",
+          "delivery": "T+2",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Argentina",
+          "iso2": "AR",
+          "iso3": "ARG",
+          "lat": -38.4,
+          "lon": -63.6,
+          "currency": "ARS",
+          "region": "Americas",
+          "delivery": "T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            }
+          ]
+        },
+        {
+          "country": "Armenia",
+          "iso2": "AM",
+          "iso3": "ARM",
+          "lat": 40.1,
+          "lon": 45,
+          "currency": "AMD",
+          "region": "Europe",
+          "delivery": "T+2",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Australia",
+          "iso2": "AU",
+          "iso3": "AUS",
+          "lat": -25.3,
+          "lon": 133.8,
+          "currency": "AUD",
+          "region": "South East Asia & Pacific",
+          "delivery": "T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Austria",
+          "iso2": "AT",
+          "iso3": "AUT",
+          "lat": 47.5,
+          "lon": 14.6,
+          "currency": "EUR",
+          "region": "Europe",
+          "delivery": "Real Time / T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": [
+                "SEPA Instant",
+                "SEPA Credit Transfer"
+              ]
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Azerbaijan",
+          "iso2": "AZ",
+          "iso3": "AZE",
+          "lat": 40.1,
+          "lon": 47.6,
+          "currency": "AZN",
+          "region": "Europe",
+          "delivery": "T+1",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Bahamas",
+          "iso2": "BS",
+          "iso3": "BHS",
+          "lat": 25,
+          "lon": -77.4,
+          "currency": "BSD",
+          "region": "Americas",
+          "delivery": "T+2",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Bahrain",
+          "iso2": "BH",
+          "iso3": "BHR",
+          "lat": 25.9,
+          "lon": 50.6,
+          "currency": "BHD",
+          "region": "Middle East & North Africa",
+          "delivery": "T+2",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Bangladesh",
+          "iso2": "BD",
+          "iso3": "BGD",
+          "lat": 23.7,
+          "lon": 90.4,
+          "currency": "BDT",
+          "region": "Central & South Asia",
+          "delivery": "T+1",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Barbados",
+          "iso2": "BB",
+          "iso3": "BRB",
+          "lat": 13.2,
+          "lon": -59.5,
+          "currency": "BBD",
+          "region": "Americas",
+          "delivery": "T+0",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Belgium",
+          "iso2": "BE",
+          "iso3": "BEL",
+          "lat": 50.5,
+          "lon": 4.5,
+          "currency": "EUR",
+          "region": "Europe",
+          "delivery": "Real Time / T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": [
+                "SEPA Instant",
+                "SEPA Credit Transfer"
+              ]
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Belize",
+          "iso2": "BZ",
+          "iso3": "BLZ",
+          "lat": 17.2,
+          "lon": -88.5,
+          "currency": "BZD",
+          "region": "Americas",
+          "delivery": "T+2",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            }
+          ]
+        },
+        {
+          "country": "Benin",
+          "iso2": "BJ",
+          "iso3": "BEN",
+          "lat": 9.3,
+          "lon": 2.3,
+          "currency": "XOF",
+          "region": "Africa",
+          "delivery": "T+1",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Bermuda",
+          "iso2": "BM",
+          "iso3": "BMU",
+          "lat": 32.3,
+          "lon": -64.8,
+          "currency": "BMD",
+          "region": "Americas",
+          "delivery": "T+2",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Bolivia",
+          "iso2": "BO",
+          "iso3": "BOL",
+          "lat": -16.3,
+          "lon": -63.6,
+          "currency": "BOB",
+          "region": "Americas",
+          "delivery": "T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            }
+          ]
+        },
+        {
+          "country": "Bosnia and Herzegovina",
+          "iso2": "BA",
+          "iso3": "BIH",
+          "lat": 43.9,
+          "lon": 17.7,
+          "currency": "BAM",
+          "region": "Europe",
+          "delivery": "T+2",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            }
+          ]
+        },
+        {
+          "country": "Botswana",
+          "iso2": "BW",
+          "iso3": "BWA",
+          "lat": -22.3,
+          "lon": 24.7,
+          "currency": "BWP",
+          "region": "Africa",
+          "delivery": "T+2",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Brazil",
+          "iso2": "BR",
+          "iso3": "BRA",
+          "lat": -14.2,
+          "lon": -51.9,
+          "currency": "BRL",
+          "region": "Americas",
+          "delivery": "Real Time",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": [
+                "PIX"
+              ]
+            }
+          ]
+        },
+        {
+          "country": "Bulgaria",
+          "iso2": "BG",
+          "iso3": "BGR",
+          "lat": 42.7,
+          "lon": 25.5,
+          "currency": "BGN",
+          "region": "Europe",
+          "delivery": "Real Time / T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            }
+          ]
+        },
+        {
+          "country": "Burkina Faso",
+          "iso2": "BF",
+          "iso3": "BFA",
+          "lat": 12.2,
+          "lon": -1.6,
+          "currency": "XOF",
+          "region": "Africa",
+          "delivery": "T+1",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Cambodia",
+          "iso2": "KH",
+          "iso3": "KHM",
+          "lat": 12.5,
+          "lon": 104.9,
+          "currency": "KHR",
+          "region": "South East Asia & Pacific",
+          "delivery": "T+1",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Cameroon",
+          "iso2": "CM",
+          "iso3": "CMR",
+          "lat": 7.4,
+          "lon": 12.4,
+          "currency": "XAF",
+          "region": "Africa",
+          "delivery": "Real Time",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            }
+          ]
+        },
+        {
+          "country": "Canada",
+          "iso2": "CA",
+          "iso3": "CAN",
+          "lat": 56,
+          "lon": -106,
+          "currency": "CAD",
+          "region": "Americas",
+          "delivery": "T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": [
+                "EFT",
+                "Interac"
+              ]
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Cape Verde",
+          "iso2": "CV",
+          "iso3": "CPV",
+          "lat": 16,
+          "lon": -24,
+          "currency": "CVE",
+          "region": "Africa",
+          "delivery": "T+2",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Cayman Islands",
+          "iso2": "KY",
+          "iso3": "CYM",
+          "lat": 19.5,
+          "lon": -80.6,
+          "currency": "KYD",
+          "region": "Americas",
+          "delivery": "T+1",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Central African Republic",
+          "iso2": "CF",
+          "iso3": "CAF",
+          "lat": 6.6,
+          "lon": 20.9,
+          "currency": "XAF",
+          "region": "Africa",
+          "delivery": "Real Time",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            }
+          ]
+        },
+        {
+          "country": "Chad",
+          "iso2": "TD",
+          "iso3": "TCD",
+          "lat": 15.5,
+          "lon": 18.7,
+          "currency": "XAF",
+          "region": "Africa",
+          "delivery": "Real Time",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            }
+          ]
+        },
+        {
+          "country": "Chile",
+          "iso2": "CL",
+          "iso3": "CHL",
+          "lat": -35.7,
+          "lon": -71.5,
+          "currency": "CLP",
+          "region": "Americas",
+          "delivery": "T+1",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            }
+          ]
+        },
+        {
+          "country": "China",
+          "iso2": "CN",
+          "iso3": "CHN",
+          "lat": 35.9,
+          "lon": 104.2,
+          "currency": "CNY",
+          "region": "South East Asia & Pacific",
+          "delivery": "T+2",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Colombia",
+          "iso2": "CO",
+          "iso3": "COL",
+          "lat": 4.6,
+          "lon": -74.1,
+          "currency": "COP",
+          "region": "Americas",
+          "delivery": "T+1",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            }
+          ]
+        },
+        {
+          "country": "Costa Rica",
+          "iso2": "CR",
+          "iso3": "CRI",
+          "lat": 9.7,
+          "lon": -83.7,
+          "currency": "CRC",
+          "region": "Americas",
+          "delivery": "T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            }
+          ]
+        },
+        {
+          "country": "Côte d'Ivoire",
+          "iso2": "CI",
+          "iso3": "CIV",
+          "lat": 7.5,
+          "lon": -5.5,
+          "currency": "XOF",
+          "region": "Africa",
+          "delivery": "T+1",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Croatia",
+          "iso2": "HR",
+          "iso3": "HRV",
+          "lat": 45.1,
+          "lon": 15.2,
+          "currency": "EUR",
+          "region": "Europe",
+          "delivery": "Real Time / T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Cyprus",
+          "iso2": "CY",
+          "iso3": "CYP",
+          "lat": 35.1,
+          "lon": 33.4,
+          "currency": "EUR",
+          "region": "Europe",
+          "delivery": "Real Time / T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Czech Republic",
+          "iso2": "CZ",
+          "iso3": "CZE",
+          "lat": 49.8,
+          "lon": 15.5,
+          "currency": "CZK",
+          "region": "Europe",
+          "delivery": "Real Time / T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Denmark",
+          "iso2": "DK",
+          "iso3": "DNK",
+          "lat": 56.3,
+          "lon": 9.5,
+          "currency": "DKK",
+          "region": "Europe",
+          "delivery": "Real Time",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Djibouti",
+          "iso2": "DJ",
+          "iso3": "DJI",
+          "lat": 11.8,
+          "lon": 42.6,
+          "currency": "DJF",
+          "region": "Africa",
+          "delivery": "T+2",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Dominican Republic",
+          "iso2": "DO",
+          "iso3": "DOM",
+          "lat": 18.7,
+          "lon": -70.2,
+          "currency": "DOP",
+          "region": "Americas",
+          "delivery": "T+1",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            }
+          ]
+        },
+        {
+          "country": "Ecuador",
+          "iso2": "EC",
+          "iso3": "ECU",
+          "lat": -1.8,
+          "lon": -78.2,
+          "currency": "USD",
+          "region": "Americas",
+          "delivery": "T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Egypt",
+          "iso2": "EG",
+          "iso3": "EGY",
+          "lat": 26.8,
+          "lon": 30.8,
+          "currency": "EGP",
+          "region": "Middle East & North Africa",
+          "delivery": "T+1",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "El Salvador",
+          "iso2": "SV",
+          "iso3": "SLV",
+          "lat": 13.8,
+          "lon": -88.9,
+          "currency": "USD",
+          "region": "Americas",
+          "delivery": "T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Equatorial Guinea",
+          "iso2": "GQ",
+          "iso3": "GNQ",
+          "lat": 1.7,
+          "lon": 10.3,
+          "currency": "XAF",
+          "region": "Africa",
+          "delivery": "Real Time",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            }
+          ]
+        },
+        {
+          "country": "Estonia",
+          "iso2": "EE",
+          "iso3": "EST",
+          "lat": 58.6,
+          "lon": 25,
+          "currency": "EUR",
+          "region": "Europe",
+          "delivery": "Real Time / T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Eswatini",
+          "iso2": "SZ",
+          "iso3": "SWZ",
+          "lat": -26.5,
+          "lon": 31.5,
+          "currency": "SZL",
+          "region": "Africa",
+          "delivery": "T+2",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Ethiopia",
+          "iso2": "ET",
+          "iso3": "ETH",
+          "lat": 9.1,
+          "lon": 40.5,
+          "currency": "ETB",
+          "region": "Africa",
+          "delivery": "T+1",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Fiji",
+          "iso2": "FJ",
+          "iso3": "FJI",
+          "lat": -17.7,
+          "lon": 178.1,
+          "currency": "FJD",
+          "region": "South East Asia & Pacific",
+          "delivery": "T+2",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Finland",
+          "iso2": "FI",
+          "iso3": "FIN",
+          "lat": 61.9,
+          "lon": 25.7,
+          "currency": "EUR",
+          "region": "Europe",
+          "delivery": "Real Time / T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": [
+                "SEPA Instant",
+                "SEPA Credit Transfer"
+              ]
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "France",
+          "iso2": "FR",
+          "iso3": "FRA",
+          "lat": 46.6,
+          "lon": 2.2,
+          "currency": "EUR",
+          "region": "Europe",
+          "delivery": "Real Time / T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": [
+                "SEPA Instant",
+                "SEPA Credit Transfer"
+              ]
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Gabon",
+          "iso2": "GA",
+          "iso3": "GAB",
+          "lat": -0.8,
+          "lon": 11.6,
+          "currency": "XAF",
+          "region": "Africa",
+          "delivery": "Real Time",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            }
+          ]
+        },
+        {
+          "country": "Georgia",
+          "iso2": "GE",
+          "iso3": "GEO",
+          "lat": 42.3,
+          "lon": 43.4,
+          "currency": "GEL",
+          "region": "Europe",
+          "delivery": "T+1",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Germany",
+          "iso2": "DE",
+          "iso3": "DEU",
+          "lat": 51.2,
+          "lon": 10.4,
+          "currency": "EUR",
+          "region": "Europe",
+          "delivery": "Real Time / T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": [
+                "SEPA Instant",
+                "SEPA Credit Transfer"
+              ]
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Ghana",
+          "iso2": "GH",
+          "iso3": "GHA",
+          "lat": 7.9,
+          "lon": -1,
+          "currency": "GHS",
+          "region": "Africa",
+          "delivery": "Real Time",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Gibraltar",
+          "iso2": "GI",
+          "iso3": "GIB",
+          "lat": 36.1,
+          "lon": -5.4,
+          "currency": "GIP",
+          "region": "Europe",
+          "delivery": "Real Time / T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            }
+          ]
+        },
+        {
+          "country": "Greece",
+          "iso2": "GR",
+          "iso3": "GRC",
+          "lat": 39.1,
+          "lon": 21.8,
+          "currency": "EUR",
+          "region": "Europe",
+          "delivery": "Real Time / T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Guatemala",
+          "iso2": "GT",
+          "iso3": "GTM",
+          "lat": 15.8,
+          "lon": -90.2,
+          "currency": "GTQ",
+          "region": "Americas",
+          "delivery": "T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            }
+          ]
+        },
+        {
+          "country": "Guernsey",
+          "iso2": "GG",
+          "iso3": "GGY",
+          "lat": 49.5,
+          "lon": -2.6,
+          "currency": "GBP",
+          "region": "Europe",
+          "delivery": "Real Time / T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Guinea-Bissau",
+          "iso2": "GW",
+          "iso3": "GNB",
+          "lat": 11.8,
+          "lon": -15.2,
+          "currency": "XOF",
+          "region": "Africa",
+          "delivery": "T+1",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Guyana",
+          "iso2": "GY",
+          "iso3": "GUY",
+          "lat": 4.9,
+          "lon": -58.9,
+          "currency": "GYD",
+          "region": "Americas",
+          "delivery": "T+2",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Honduras",
+          "iso2": "HN",
+          "iso3": "HND",
+          "lat": 15.2,
+          "lon": -86.2,
+          "currency": "HNL",
+          "region": "Americas",
+          "delivery": "T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            }
+          ]
+        },
+        {
+          "country": "Hong Kong",
+          "iso2": "HK",
+          "iso3": "HKG",
+          "lat": 22.3,
+          "lon": 114.2,
+          "currency": "HKD",
+          "region": "South East Asia & Pacific",
+          "delivery": "T+1",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Hungary",
+          "iso2": "HU",
+          "iso3": "HUN",
+          "lat": 47.2,
+          "lon": 19.5,
+          "currency": "HUF",
+          "region": "Europe",
+          "delivery": "T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Iceland",
+          "iso2": "IS",
+          "iso3": "ISL",
+          "lat": 64.9,
+          "lon": -19,
+          "currency": "ISK",
+          "region": "Europe",
+          "delivery": "Real Time / T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "India",
+          "iso2": "IN",
+          "iso3": "IND",
+          "lat": 20.6,
+          "lon": 78.9,
+          "currency": "INR",
+          "region": "Central & South Asia",
+          "delivery": "Real Time",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Indonesia",
+          "iso2": "ID",
+          "iso3": "IDN",
+          "lat": -0.8,
+          "lon": 113.9,
+          "currency": "IDR",
+          "region": "South East Asia & Pacific",
+          "delivery": "T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            }
+          ]
+        },
+        {
+          "country": "Ireland",
+          "iso2": "IE",
+          "iso3": "IRL",
+          "lat": 53.4,
+          "lon": -8.2,
+          "currency": "EUR",
+          "region": "Europe",
+          "delivery": "Real Time / T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": [
+                "SEPA Instant",
+                "SEPA Credit Transfer"
+              ]
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Isle of Man",
+          "iso2": "IM",
+          "iso3": "IMN",
+          "lat": 54.2,
+          "lon": -4.6,
+          "currency": "GBP",
+          "region": "Europe",
+          "delivery": "Real Time / T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Israel",
+          "iso2": "IL",
+          "iso3": "ISR",
+          "lat": 31,
+          "lon": 34.9,
+          "currency": "ILS",
+          "region": "Middle East & North Africa",
+          "delivery": "T+1",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Italy",
+          "iso2": "IT",
+          "iso3": "ITA",
+          "lat": 41.9,
+          "lon": 12.6,
+          "currency": "EUR",
+          "region": "Europe",
+          "delivery": "Real Time / T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": [
+                "SEPA Instant",
+                "SEPA Credit Transfer"
+              ]
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Jamaica",
+          "iso2": "JM",
+          "iso3": "JAM",
+          "lat": 18.1,
+          "lon": -77.3,
+          "currency": "JMD",
+          "region": "Americas",
+          "delivery": "T+2",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Japan",
+          "iso2": "JP",
+          "iso3": "JPN",
+          "lat": 36.2,
+          "lon": 138.3,
+          "currency": "JPY",
+          "region": "South East Asia & Pacific",
+          "delivery": "T+1",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Jersey",
+          "iso2": "JE",
+          "iso3": "JEY",
+          "lat": 49.2,
+          "lon": -2.1,
+          "currency": "GBP",
+          "region": "Europe",
+          "delivery": "Real Time / T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Jordan",
+          "iso2": "JO",
+          "iso3": "JOR",
+          "lat": 30.6,
+          "lon": 36.2,
+          "currency": "JOD",
+          "region": "Middle East & North Africa",
+          "delivery": "T+2",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Kazakhstan",
+          "iso2": "KZ",
+          "iso3": "KAZ",
+          "lat": 48,
+          "lon": 66.9,
+          "currency": "KZT",
+          "region": "Central & South Asia",
+          "delivery": "T+1",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Kenya",
+          "iso2": "KE",
+          "iso3": "KEN",
+          "lat": 0,
+          "lon": 37.9,
+          "currency": "KES",
+          "region": "Africa",
+          "delivery": "T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Kuwait",
+          "iso2": "KW",
+          "iso3": "KWT",
+          "lat": 29.3,
+          "lon": 47.5,
+          "currency": "KWD",
+          "region": "Middle East & North Africa",
+          "delivery": "T+1",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Kyrgyzstan",
+          "iso2": "KG",
+          "iso3": "KGZ",
+          "lat": 41.2,
+          "lon": 74.8,
+          "currency": "KGS",
+          "region": "Central & South Asia",
+          "delivery": "T+1",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            }
+          ]
+        },
+        {
+          "country": "Laos",
+          "iso2": "LA",
+          "iso3": "LAO",
+          "lat": 19.9,
+          "lon": 102.5,
+          "currency": "LAK",
+          "region": "South East Asia & Pacific",
+          "delivery": "T+2",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            }
+          ]
+        },
+        {
+          "country": "Latvia",
+          "iso2": "LV",
+          "iso3": "LVA",
+          "lat": 56.9,
+          "lon": 24.6,
+          "currency": "EUR",
+          "region": "Europe",
+          "delivery": "Real Time / T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Liechtenstein",
+          "iso2": "LI",
+          "iso3": "LIE",
+          "lat": 47.2,
+          "lon": 9.6,
+          "currency": "CHF",
+          "region": "Europe",
+          "delivery": "Real Time / T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Lithuania",
+          "iso2": "LT",
+          "iso3": "LTU",
+          "lat": 55.2,
+          "lon": 23.9,
+          "currency": "EUR",
+          "region": "Europe",
+          "delivery": "Real Time / T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Luxembourg",
+          "iso2": "LU",
+          "iso3": "LUX",
+          "lat": 49.8,
+          "lon": 6.1,
+          "currency": "EUR",
+          "region": "Europe",
+          "delivery": "Real Time / T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Macau",
+          "iso2": "MO",
+          "iso3": "MAC",
+          "lat": 22.2,
+          "lon": 113.5,
+          "currency": "MOP",
+          "region": "South East Asia & Pacific",
+          "delivery": "T+1",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Madagascar",
+          "iso2": "MG",
+          "iso3": "MDG",
+          "lat": -18.8,
+          "lon": 46.9,
+          "currency": "MGA",
+          "region": "Africa",
+          "delivery": "T+2",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Malawi",
+          "iso2": "MW",
+          "iso3": "MWI",
+          "lat": -13.3,
+          "lon": 34.3,
+          "currency": "MWK",
+          "region": "Africa",
+          "delivery": "T+1",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Malaysia",
+          "iso2": "MY",
+          "iso3": "MYS",
+          "lat": 4.2,
+          "lon": 101.9,
+          "currency": "MYR",
+          "region": "South East Asia & Pacific",
+          "delivery": "T+1",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            }
+          ]
+        },
+        {
+          "country": "Mali",
+          "iso2": "ML",
+          "iso3": "MLI",
+          "lat": 17.6,
+          "lon": -4,
+          "currency": "XOF",
+          "region": "Africa",
+          "delivery": "T+1",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Malta",
+          "iso2": "MT",
+          "iso3": "MLT",
+          "lat": 35.9,
+          "lon": 14.4,
+          "currency": "EUR",
+          "region": "Europe",
+          "delivery": "Real Time / T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Mexico",
+          "iso2": "MX",
+          "iso3": "MEX",
+          "lat": 23.6,
+          "lon": -102.5,
+          "currency": "MXN",
+          "region": "Americas",
+          "delivery": "T+2",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Monaco",
+          "iso2": "MC",
+          "iso3": "MCO",
+          "lat": 43.7,
+          "lon": 7.4,
+          "currency": "EUR",
+          "region": "Europe",
+          "delivery": "Real Time / T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Mongolia",
+          "iso2": "MN",
+          "iso3": "MNG",
+          "lat": 46.9,
+          "lon": 103.9,
+          "currency": "MNT",
+          "region": "South East Asia & Pacific",
+          "delivery": "T+2",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Morocco",
+          "iso2": "MA",
+          "iso3": "MAR",
+          "lat": 31.8,
+          "lon": -7.1,
+          "currency": "MAD",
+          "region": "Middle East & North Africa",
+          "delivery": "T+1",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            }
+          ]
+        },
+        {
+          "country": "Mozambique",
+          "iso2": "MZ",
+          "iso3": "MOZ",
+          "lat": -18.7,
+          "lon": 35.5,
+          "currency": "MZN",
+          "region": "Africa",
+          "delivery": "T+1",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Namibia",
+          "iso2": "NA",
+          "iso3": "NAM",
+          "lat": -22.9,
+          "lon": 18.5,
+          "currency": "NAD",
+          "region": "Africa",
+          "delivery": "T+2",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Nepal",
+          "iso2": "NP",
+          "iso3": "NPL",
+          "lat": 28.4,
+          "lon": 84.1,
+          "currency": "NPR",
+          "region": "Central & South Asia",
+          "delivery": "T+1",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            }
+          ]
+        },
+        {
+          "country": "Netherlands",
+          "iso2": "NL",
+          "iso3": "NLD",
+          "lat": 52.1,
+          "lon": 5.3,
+          "currency": "EUR",
+          "region": "Europe",
+          "delivery": "Real Time / T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": [
+                "SEPA Instant",
+                "SEPA Credit Transfer"
+              ]
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "New Zealand",
+          "iso2": "NZ",
+          "iso3": "NZL",
+          "lat": -40.9,
+          "lon": 174.9,
+          "currency": "NZD",
+          "region": "South East Asia & Pacific",
+          "delivery": "T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Nicaragua",
+          "iso2": "NI",
+          "iso3": "NIC",
+          "lat": 12.9,
+          "lon": -85.2,
+          "currency": "NIO",
+          "region": "Americas",
+          "delivery": "Real Time",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            }
+          ]
+        },
+        {
+          "country": "Niger",
+          "iso2": "NE",
+          "iso3": "NER",
+          "lat": 17.6,
+          "lon": 8.1,
+          "currency": "XOF",
+          "region": "Africa",
+          "delivery": "T+1",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Nigeria",
+          "iso2": "NG",
+          "iso3": "NGA",
+          "lat": 9.1,
+          "lon": 8.7,
+          "currency": "NGN",
+          "region": "Africa",
+          "delivery": "T+2",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Norway",
+          "iso2": "NO",
+          "iso3": "NOR",
+          "lat": 60.5,
+          "lon": 8.5,
+          "currency": "NOK",
+          "region": "Europe",
+          "delivery": "T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Oman",
+          "iso2": "OM",
+          "iso3": "OMN",
+          "lat": 21.5,
+          "lon": 55.9,
+          "currency": "OMR",
+          "region": "Middle East & North Africa",
+          "delivery": "T+2",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Pakistan",
+          "iso2": "PK",
+          "iso3": "PAK",
+          "lat": 30.4,
+          "lon": 69.3,
+          "currency": "PKR",
+          "region": "Central & South Asia",
+          "delivery": "T+2",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Papua New Guinea",
+          "iso2": "PG",
+          "iso3": "PNG",
+          "lat": -6.3,
+          "lon": 143.9,
+          "currency": "PGK",
+          "region": "South East Asia & Pacific",
+          "delivery": "T+2",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Paraguay",
+          "iso2": "PY",
+          "iso3": "PRY",
+          "lat": -23.4,
+          "lon": -58.4,
+          "currency": "PYG",
+          "region": "Americas",
+          "delivery": "T+1",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            }
+          ]
+        },
+        {
+          "country": "Peru",
+          "iso2": "PE",
+          "iso3": "PER",
+          "lat": -9.2,
+          "lon": -75,
+          "currency": "PEN",
+          "region": "Americas",
+          "delivery": "T+1",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            }
+          ]
+        },
+        {
+          "country": "Philippines",
+          "iso2": "PH",
+          "iso3": "PHL",
+          "lat": 12.9,
+          "lon": 121.8,
+          "currency": "PHP",
+          "region": "South East Asia & Pacific",
+          "delivery": "T+1",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Poland",
+          "iso2": "PL",
+          "iso3": "POL",
+          "lat": 51.9,
+          "lon": 19.1,
+          "currency": "PLN",
+          "region": "Europe",
+          "delivery": "T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Portugal",
+          "iso2": "PT",
+          "iso3": "PRT",
+          "lat": 39.4,
+          "lon": -8.2,
+          "currency": "EUR",
+          "region": "Europe",
+          "delivery": "Real Time / T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": [
+                "SEPA Instant",
+                "SEPA Credit Transfer"
+              ]
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Qatar",
+          "iso2": "QA",
+          "iso3": "QAT",
+          "lat": 25.4,
+          "lon": 51.2,
+          "currency": "QAR",
+          "region": "Middle East & North Africa",
+          "delivery": "T+1",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Republic of the Congo",
+          "iso2": "CG",
+          "iso3": "COG",
+          "lat": -0.2,
+          "lon": 15.8,
+          "currency": "XAF",
+          "region": "Africa",
+          "delivery": "Real Time",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            }
+          ]
+        },
+        {
+          "country": "Romania",
+          "iso2": "RO",
+          "iso3": "ROU",
+          "lat": 45.9,
+          "lon": 25,
+          "currency": "RON",
+          "region": "Europe",
+          "delivery": "T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Rwanda",
+          "iso2": "RW",
+          "iso3": "RWA",
+          "lat": -1.9,
+          "lon": 29.9,
+          "currency": "RWF",
+          "region": "Africa",
+          "delivery": "T+1",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "San Marino",
+          "iso2": "SM",
+          "iso3": "SMR",
+          "lat": 43.9,
+          "lon": 12.5,
+          "currency": "EUR",
+          "region": "Europe",
+          "delivery": "Real Time / T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Saudi Arabia",
+          "iso2": "SA",
+          "iso3": "SAU",
+          "lat": 23.9,
+          "lon": 45.1,
+          "currency": "SAR",
+          "region": "Middle East & North Africa",
+          "delivery": "T+1",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Senegal",
+          "iso2": "SN",
+          "iso3": "SEN",
+          "lat": 14.5,
+          "lon": -14.5,
+          "currency": "XOF",
+          "region": "Africa",
+          "delivery": "T+1",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Serbia",
+          "iso2": "RS",
+          "iso3": "SRB",
+          "lat": 44,
+          "lon": 21,
+          "currency": "RSD",
+          "region": "Europe",
+          "delivery": "T+2",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Seychelles",
+          "iso2": "SC",
+          "iso3": "SYC",
+          "lat": -4.7,
+          "lon": 55.5,
+          "currency": "SCR",
+          "region": "Africa",
+          "delivery": "T+0",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Singapore",
+          "iso2": "SG",
+          "iso3": "SGP",
+          "lat": 1.35,
+          "lon": 103.8,
+          "currency": "SGD",
+          "region": "South East Asia & Pacific",
+          "delivery": "T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": [
+                "FAST"
+              ]
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Slovakia",
+          "iso2": "SK",
+          "iso3": "SVK",
+          "lat": 48.7,
+          "lon": 19.7,
+          "currency": "EUR",
+          "region": "Europe",
+          "delivery": "Real Time / T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Slovenia",
+          "iso2": "SI",
+          "iso3": "SVN",
+          "lat": 46.2,
+          "lon": 14.9,
+          "currency": "EUR",
+          "region": "Europe",
+          "delivery": "Real Time / T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "South Africa",
+          "iso2": "ZA",
+          "iso3": "ZAF",
+          "lat": -30.6,
+          "lon": 22.9,
+          "currency": "ZAR",
+          "region": "Africa",
+          "delivery": "T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": [
+                "EFT"
+              ]
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "South Korea",
+          "iso2": "KR",
+          "iso3": "KOR",
+          "lat": 35.9,
+          "lon": 127.8,
+          "currency": "KRW",
+          "region": "South East Asia & Pacific",
+          "delivery": "Real Time",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            }
+          ]
+        },
+        {
+          "country": "Spain",
+          "iso2": "ES",
+          "iso3": "ESP",
+          "lat": 40.5,
+          "lon": -3.7,
+          "currency": "EUR",
+          "region": "Europe",
+          "delivery": "Real Time / T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": [
+                "SEPA Instant",
+                "SEPA Credit Transfer"
+              ]
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Sri Lanka",
+          "iso2": "LK",
+          "iso3": "LKA",
+          "lat": 7.9,
+          "lon": 80.8,
+          "currency": "LKR",
+          "region": "Central & South Asia",
+          "delivery": "T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Suriname",
+          "iso2": "SR",
+          "iso3": "SUR",
+          "lat": 3.9,
+          "lon": -56,
+          "currency": "SRD",
+          "region": "Americas",
+          "delivery": "T+2",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Sweden",
+          "iso2": "SE",
+          "iso3": "SWE",
+          "lat": 60.1,
+          "lon": 18.6,
+          "currency": "SEK",
+          "region": "Europe",
+          "delivery": "T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Switzerland",
+          "iso2": "CH",
+          "iso3": "CHE",
+          "lat": 46.8,
+          "lon": 8.2,
+          "currency": "CHF",
+          "region": "Europe",
+          "delivery": "Real Time / T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Taiwan",
+          "iso2": "TW",
+          "iso3": "TWN",
+          "lat": 23.7,
+          "lon": 121,
+          "currency": "TWD",
+          "region": "South East Asia & Pacific",
+          "delivery": "T+2",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Tajikistan",
+          "iso2": "TJ",
+          "iso3": "TJK",
+          "lat": 38.9,
+          "lon": 71.3,
+          "currency": "TJS",
+          "region": "Central & South Asia",
+          "delivery": "T+2",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Tanzania",
+          "iso2": "TZ",
+          "iso3": "TZA",
+          "lat": -6.4,
+          "lon": 34.9,
+          "currency": "TZS",
+          "region": "Africa",
+          "delivery": "T+2",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Thailand",
+          "iso2": "TH",
+          "iso3": "THA",
+          "lat": 15.9,
+          "lon": 100.9,
+          "currency": "THB",
+          "region": "South East Asia & Pacific",
+          "delivery": "T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Togo",
+          "iso2": "TG",
+          "iso3": "TGO",
+          "lat": 8.6,
+          "lon": 0.8,
+          "currency": "XOF",
+          "region": "Africa",
+          "delivery": "T+1",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Tonga",
+          "iso2": "TO",
+          "iso3": "TON",
+          "lat": -21.2,
+          "lon": -175.2,
+          "currency": "TOP",
+          "region": "South East Asia & Pacific",
+          "delivery": "T+2",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Tunisia",
+          "iso2": "TN",
+          "iso3": "TUN",
+          "lat": 33.9,
+          "lon": 9.5,
+          "currency": "TND",
+          "region": "Middle East & North Africa",
+          "delivery": "T+2",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Turkey",
+          "iso2": "TR",
+          "iso3": "TUR",
+          "lat": 38.9,
+          "lon": 35.2,
+          "currency": "TRY",
+          "region": "Europe",
+          "delivery": "T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": [
+                "FAST",
+                "EFT"
+              ]
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Uganda",
+          "iso2": "UG",
+          "iso3": "UGA",
+          "lat": 1.4,
+          "lon": 32.3,
+          "currency": "UGX",
+          "region": "Africa",
+          "delivery": "T+2",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "United Arab Emirates",
+          "iso2": "AE",
+          "iso3": "ARE",
+          "lat": 23.4,
+          "lon": 53.8,
+          "currency": "AED",
+          "region": "Middle East & North Africa",
+          "delivery": "T+1",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "United Kingdom",
+          "iso2": "GB",
+          "iso3": "GBR",
+          "lat": 55,
+          "lon": -3.5,
+          "currency": "GBP",
+          "region": "Europe",
+          "delivery": "Real Time",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": [
+                "CHAPS",
+                "BACS"
+              ]
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "United States",
+          "iso2": "US",
+          "iso3": "USA",
+          "lat": 39,
+          "lon": -98,
+          "currency": "USD",
+          "region": "Americas",
+          "delivery": "T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": [
+                "FedNow",
+                "ACH",
+                "FedWire"
+              ]
+            },
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        },
+        {
+          "country": "Uruguay",
+          "iso2": "UY",
+          "iso3": "URY",
+          "lat": -32.5,
+          "lon": -55.8,
+          "currency": "UYU",
+          "region": "Americas",
+          "delivery": "T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            }
+          ]
+        },
+        {
+          "country": "Vietnam",
+          "iso2": "VN",
+          "iso3": "VNM",
+          "lat": 14.1,
+          "lon": 108.3,
+          "currency": "VND",
+          "region": "South East Asia & Pacific",
+          "delivery": "T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            }
+          ]
+        },
+        {
+          "country": "Zambia",
+          "iso2": "ZM",
+          "iso3": "ZMB",
+          "lat": -13.1,
+          "lon": 27.8,
+          "currency": "ZMW",
+          "region": "Africa",
+          "delivery": "T+1",
+          "paymentMethods": [
+            {
+              "type": "SWIFT Bank Transfer"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "us",
+      "name": "US Hub",
+      "entity": "Vitesse Trust Company, LLC",
+      "regulator": "NYDFS",
+      "city": "New York",
+      "lat": 40.7128,
+      "lon": -74.006,
+      "fundingCurrencies": [
+        "USD"
+      ],
+      "supportedCountries": [
+        {
+          "country": "Argentina",
+          "iso2": "AR",
+          "iso3": "ARG",
+          "lat": -38.4,
+          "lon": -63.6,
+          "currency": "ARS",
+          "region": "Americas",
+          "delivery": "T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            }
+          ]
+        },
+        {
+          "country": "Bolivia",
+          "iso2": "BO",
+          "iso3": "BOL",
+          "lat": -16.3,
+          "lon": -63.6,
+          "currency": "BOB",
+          "region": "Americas",
+          "delivery": "T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            }
+          ]
+        },
+        {
+          "country": "Brazil",
+          "iso2": "BR",
+          "iso3": "BRA",
+          "lat": -14.2,
+          "lon": -51.9,
+          "currency": "BRL",
+          "region": "Americas",
+          "delivery": "Real Time",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": [
+                "PIX"
+              ]
+            }
+          ]
+        },
+        {
+          "country": "Canada",
+          "iso2": "CA",
+          "iso3": "CAN",
+          "lat": 56,
+          "lon": -106,
+          "currency": "CAD",
+          "region": "Americas",
+          "delivery": "T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": [
+                "EFT",
+                "Interac"
+              ]
+            }
+          ]
+        },
+        {
+          "country": "Chile",
+          "iso2": "CL",
+          "iso3": "CHL",
+          "lat": -35.7,
+          "lon": -71.5,
+          "currency": "CLP",
+          "region": "Americas",
+          "delivery": "T+1",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            }
+          ]
+        },
+        {
+          "country": "Colombia",
+          "iso2": "CO",
+          "iso3": "COL",
+          "lat": 4.6,
+          "lon": -74.1,
+          "currency": "COP",
+          "region": "Americas",
+          "delivery": "T+1",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            }
+          ]
+        },
+        {
+          "country": "Costa Rica",
+          "iso2": "CR",
+          "iso3": "CRI",
+          "lat": 9.7,
+          "lon": -83.7,
+          "currency": "CRC",
+          "region": "Americas",
+          "delivery": "T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            }
+          ]
+        },
+        {
+          "country": "Dominican Republic",
+          "iso2": "DO",
+          "iso3": "DOM",
+          "lat": 18.7,
+          "lon": -70.2,
+          "currency": "DOP",
+          "region": "Americas",
+          "delivery": "T+1",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            }
+          ]
+        },
+        {
+          "country": "Ghana",
+          "iso2": "GH",
+          "iso3": "GHA",
+          "lat": 7.9,
+          "lon": -1,
+          "currency": "GHS",
+          "region": "Africa",
+          "delivery": "Real Time",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            }
+          ]
+        },
+        {
+          "country": "Guatemala",
+          "iso2": "GT",
+          "iso3": "GTM",
+          "lat": 15.8,
+          "lon": -90.2,
+          "currency": "GTQ",
+          "region": "Americas",
+          "delivery": "T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            }
+          ]
+        },
+        {
+          "country": "Guernsey",
+          "iso2": "GG",
+          "iso3": "GGY",
+          "lat": 49.5,
+          "lon": -2.6,
+          "currency": "GBP",
+          "region": "Europe",
+          "delivery": null,
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            }
+          ]
+        },
+        {
+          "country": "Honduras",
+          "iso2": "HN",
+          "iso3": "HND",
+          "lat": 15.2,
+          "lon": -86.2,
+          "currency": "HNL",
+          "region": "Americas",
+          "delivery": "T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            }
+          ]
+        },
+        {
+          "country": "India",
+          "iso2": "IN",
+          "iso3": "IND",
+          "lat": 20.6,
+          "lon": 78.9,
+          "currency": "INR",
+          "region": "Central & South Asia",
+          "delivery": "Real Time",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            }
+          ]
+        },
+        {
+          "country": "Isle of Man",
+          "iso2": "IM",
+          "iso3": "IMN",
+          "lat": 54.2,
+          "lon": -4.6,
+          "currency": "GBP",
+          "region": "Europe",
+          "delivery": null,
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            }
+          ]
+        },
+        {
+          "country": "Jersey",
+          "iso2": "JE",
+          "iso3": "JEY",
+          "lat": 49.2,
+          "lon": -2.1,
+          "currency": "GBP",
+          "region": "Europe",
+          "delivery": null,
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            }
+          ]
+        },
+        {
+          "country": "Mexico",
+          "iso2": "MX",
+          "iso3": "MEX",
+          "lat": 23.6,
+          "lon": -102.5,
+          "currency": "MXN",
+          "region": "Americas",
+          "delivery": "T+2",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            }
+          ]
+        },
+        {
+          "country": "Morocco",
+          "iso2": "MA",
+          "iso3": "MAR",
+          "lat": 31.8,
+          "lon": -7.1,
+          "currency": "MAD",
+          "region": "Middle East & North Africa",
+          "delivery": "T+1",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            }
+          ]
+        },
+        {
+          "country": "Nicaragua",
+          "iso2": "NI",
+          "iso3": "NIC",
+          "lat": 12.9,
+          "lon": -85.2,
+          "currency": "NIO",
+          "region": "Americas",
+          "delivery": "Real Time",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            }
+          ]
+        },
+        {
+          "country": "Peru",
+          "iso2": "PE",
+          "iso3": "PER",
+          "lat": -9.2,
+          "lon": -75,
+          "currency": "PEN",
+          "region": "Americas",
+          "delivery": "T+1",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            }
+          ]
+        },
+        {
+          "country": "United Kingdom",
+          "iso2": "GB",
+          "iso3": "GBR",
+          "lat": 55,
+          "lon": -3.5,
+          "currency": "GBP",
+          "region": "Europe",
+          "delivery": "Real Time",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": [
+                "CHAPS",
+                "BACS"
+              ]
+            }
+          ]
+        },
+        {
+          "country": "United States",
+          "iso2": "US",
+          "iso3": "USA",
+          "lat": 39,
+          "lon": -98,
+          "currency": "USD",
+          "region": "Americas",
+          "delivery": "Real Time",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": [
+                "FedNow",
+                "ACH",
+                "FedWire"
+              ]
+            },
+            {
+              "type": "Check"
+            }
+          ]
+        },
+        {
+          "country": "Uruguay",
+          "iso2": "UY",
+          "iso3": "URY",
+          "lat": -32.5,
+          "lon": -55.8,
+          "currency": "UYU",
+          "region": "Americas",
+          "delivery": "T+0",
+          "paymentMethods": [
+            {
+              "type": "Domestic Bank Transfer",
+              "schemes": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

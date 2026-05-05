@@ -1,0 +1,3089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Vitesse — Global Treasury & Payments Network</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --dark-purple: #470A68;
+    --purple: #831FBF;
+    --vivid-purple: #B029FF;
+    --light-purple: #CF7FFF;
+    --pastel-purple: #B49EB5;
+    --warm-orange: #F15B40;
+    --light-orange: #FD9352;
+    --blue-green: #003342;
+    --off-white: #F5F5F5;
+    --black: #0A0A0A;
+
+    --bg-0: #FFFFFF;
+    --bg-1: #F5F5F5;
+    --ink: #0A0A0A;
+    --ink-soft: #470A68;
+    --line: rgba(10,10,10,0.10);
+    --line-strong: rgba(71,10,104,0.22);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: none;
+    color: var(--ink);
+    font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+    font-weight: 300;
+    letter-spacing: -0.01em;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .stage {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background: transparent;
+    overflow: hidden;
+  }
+
+  /* Top nav */
+  .topbar {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 48px;
+  }
+  .logo img { height: 28px; display: block; }
+  .topbar-meta {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: rgba(10,10,10,0.55);
+  }
+  .topbar-meta .dot {
+    display: inline-block;
+    width: 6px; height: 6px;
+    background: var(--warm-orange);
+    border-radius: 50%;
+    margin-right: 8px;
+    vertical-align: middle;
+    box-shadow: 0 0 12px var(--warm-orange);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1}50%{opacity:0.4} }
+
+  /* Hero */
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(360px, 1fr) minmax(560px, 1.4fr);
+    gap: 32px;
+    padding: 24px 48px 64px;
+    align-items: center;
+    min-height: calc(100vh - 88px);
+    position: relative;
+  }
+
+  /* Globe canvas: full-bleed centered on the viewport. */
+  .globe-bg {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: min(95vh, 95vw);
+    aspect-ratio: 1 / 1;
+    transform: translateX(-50%);
+    z-index: 1;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .globe-bg #globe-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100% !important;
+    height: 100% !important;
+    pointer-events: auto;
+    cursor: grab;
+  }
+  .globe-bg #globe-canvas:active { cursor: grabbing; }
+
+  .hero-copy { max-width: 520px; padding: 12px 0; position: relative; z-index: 5; }
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--light-orange);
+    margin-bottom: 28px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .eyebrow::before {
+    content: ""; width: 32px; height: 1px; background: var(--light-orange); display: inline-block;
+  }
+  h1 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: clamp(40px, 5.2vw, 76px);
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+    margin-bottom: 24px;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+  h1 .accent { color: var(--warm-orange); font-weight: 700; font-style: italic; }
+  h1 .soft { color: rgba(10,10,10,0.45); font-weight: 300; }
+
+  .lede {
+    font-size: 17px;
+    line-height: 1.55;
+    color: rgba(10,10,10,0.72);
+    max-width: 460px;
+    margin-bottom: 36px;
+  }
+
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border-top: 1px solid var(--line-strong);
+    border-bottom: 1px solid var(--line-strong);
+    margin-bottom: 28px;
+  }
+  .stat {
+    background: rgba(245,245,245,0.6);
+    padding: 18px 16px 16px;
+  }
+  .stat-num {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 28px;
+    letter-spacing: -0.04em;
+    color: var(--dark-purple);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .stat-num em { color: var(--warm-orange); font-style: normal; }
+  .stat-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: rgba(10,10,10,0.55);
+  }
+
+  .entity-toggle {
+    display: flex;
+    background: rgba(245,245,245,0.7);
+    border: 1px solid var(--line-strong);
+    padding: 4px;
+    margin-bottom: 24px;
+    width: fit-content;
+  }
+  .entity-toggle button {
+    appearance: none;
+    background: transparent;
+    border: none;
+    color: rgba(10,10,10,0.6);
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 10px 18px;
+    cursor: pointer;
+    letter-spacing: -0.01em;
+    transition: all 0.25s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .entity-toggle button .swatch {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+  }
+  .entity-toggle button[data-entity="uk"] .swatch { background: var(--vivid-purple); box-shadow: 0 0 10px rgba(176,41,255,0.6); }
+  .entity-toggle button[data-entity="us"] .swatch { background: var(--warm-orange); box-shadow: 0 0 10px rgba(241,91,64,0.6); }
+  .entity-toggle button[data-entity="all"] .swatch { background: var(--dark-purple); box-shadow: 0 0 10px rgba(71,10,104,0.4); }
+  .entity-toggle button.active {
+    background: var(--dark-purple);
+    color: var(--off-white);
+  }
+  .entity-toggle button:hover:not(.active) { color: var(--ink); }
+
+  .entity-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: rgba(10,10,10,0.5);
+    line-height: 1.6;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .entity-meta b { color: var(--dark-purple); font-weight: 500; }
+
+  /* Globe column — now just a positioning frame for HUD/legend overlays.
+     The actual canvas lives in .globe-bg behind everything. */
+  .globe-col {
+    position: relative;
+    height: min(82vh, 760px);
+    aspect-ratio: 1 / 1;
+    margin-left: auto;
+    margin-right: 0;
+    width: 100%;
+    max-width: 760px;
+    z-index: 3;
+    pointer-events: none;
+  }
+  .globe-col > * { pointer-events: auto; }
+  .globe-col .hex-deco { pointer-events: none; }
+
+  /* Hexagon corner decorations */
+  .hex-deco {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0.18;
+    z-index: 1;
+  }
+  .hex-deco.tl { top: 0; left: 0; }
+  .hex-deco.br { bottom: 0; right: 0; transform: rotate(180deg); }
+
+  /* HUD overlay on globe */
+  .hud {
+    position: absolute;
+    pointer-events: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: rgba(10,10,10,0.45);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    z-index: 2;
+  }
+  .hud.tl { top: 18px; left: 18px; }
+  .hud.tr { top: 18px; right: 18px; text-align: right; }
+  .hud.bl { bottom: 18px; left: 18px; }
+  .hud.br { bottom: 18px; right: 18px; text-align: right; }
+  .hud .key { color: var(--dark-purple); }
+  .hud .row { line-height: 1.7; }
+  .hud .crosshair {
+    width: 12px; height: 12px;
+    border-left: 1px solid rgba(10,10,10,0.4);
+    border-top: 1px solid rgba(10,10,10,0.4);
+    position: absolute;
+  }
+  .hud.tl .crosshair { top: 0; left: 0; }
+
+  /* Hub tooltip — `position: fixed` so we can place it with raw viewport
+     clientX/clientY. Earlier this was `position: absolute` inside `.stage`,
+     which caused horizontal drift because the canvas itself is centered with
+     `left: 50%; translateX(-50%)`: cursor coords were canvas-relative but
+     the tooltip's containing block was the wider `.stage`, so the tooltip
+     landed offset by half the empty side margin. Fixed positioning sidesteps
+     all of that. */
+  .hub-tooltip {
+    position: fixed;
+    pointer-events: none;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--line-strong);
+    box-shadow: 0 12px 40px rgba(71,10,104,0.15);
+    padding: 14px 16px;
+    min-width: 220px;
+    transform: translate(12px, -50%);
+    opacity: 0;
+    transition: opacity 0.18s ease;
+    z-index: 6;
+  }
+  .hub-tooltip.show { opacity: 1; }
+  /* UK tooltip floats to the LEFT of the cursor; US stays to the right.
+     Tight 4px offset keeps the card close. */
+  .hub-tooltip.uk { transform: translate(calc(-100% - 4px), -50%); }
+  .hub-tooltip.us { transform: translate(4px, -50%); }
+  /* Wider so the funding currencies list wraps cleanly */
+  .hub-tooltip { max-width: 320px; }
+  .hub-tooltip::before {
+    content: "";
+    position: absolute;
+    left: -1px; top: -1px;
+    width: 8px; height: 8px;
+    border-left: 1px solid var(--warm-orange);
+    border-top: 1px solid var(--warm-orange);
+  }
+  .hub-tooltip::after {
+    content: "";
+    position: absolute;
+    right: -1px; bottom: -1px;
+    width: 8px; height: 8px;
+    border-right: 1px solid var(--warm-orange);
+    border-bottom: 1px solid var(--warm-orange);
+  }
+  .tooltip-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--warm-orange);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 4px;
+  }
+  .tooltip-tag.uk { color: var(--light-purple); }
+  .tooltip-name {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 17px;
+    color: var(--dark-purple);
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+  .tooltip-meta {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 4px 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: rgba(10,10,10,0.55);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .tooltip-meta b { color: var(--ink); font-weight: 500; }
+  /* Funding-currency table — codes laid out in a fixed grid so each row has
+     consistent columns. Separators sit BETWEEN columns (rendered as the
+     pseudo-element on each cell except the last in its row). No leading or
+     trailing dots; cells are centered for tabular alignment. */
+  .tooltip-meta b.ccy-list {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    column-gap: 12px;
+    row-gap: 2px;
+    justify-content: start;
+    align-items: baseline;
+  }
+  .tooltip-meta b.ccy-list .ccy {
+    position: relative;
+    white-space: nowrap;
+  }
+  /* Dot between columns: rendered as a centered pseudo-element to the LEFT
+     of every cell EXCEPT the first column (cells 1, 5, 9, …). */
+  .tooltip-meta b.ccy-list .ccy:not(:nth-child(4n+1))::before {
+    content: "·";
+    position: absolute;
+    left: -8px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(10,10,10,0.4);
+  }
+
+  /* Lower content */
+  .below {
+    position: relative;
+    z-index: 3;
+    padding: 0 48px 80px;
+  }
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--line-strong);
+  }
+  .pillar {
+    padding: 36px 32px 32px;
+    border-right: 1px solid var(--line);
+    position: relative;
+  }
+  .pillar:last-child { border-right: none; }
+  .pillar-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--warm-orange);
+    letter-spacing: 0.2em;
+    margin-bottom: 20px;
+  }
+  .pillar h3 {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    margin-bottom: 14px;
+    color: var(--dark-purple);
+  }
+  .pillar p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(10,10,10,0.65);
+    margin-bottom: 20px;
+  }
+  .pillar-list {
+    list-style: none;
+    border-top: 1px solid var(--line);
+    padding-top: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: rgba(10,10,10,0.55);
+  }
+  .pillar-list li {
+    padding: 6px 0;
+    display: flex;
+    justify-content: space-between;
+  }
+  .pillar-list li b { color: var(--ink); font-weight: 500; }
+
+  /* Footer strip */
+  .strip {
+    margin-top: 60px;
+    padding: 28px 48px;
+    border-top: 1px solid var(--line-strong);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: rgba(10,10,10,0.45);
+  }
+  .strip b { color: var(--dark-purple); font-weight: 500; }
+
+  /* Legend over globe */
+  .legend {
+    position: absolute;
+    left: 18px;
+    bottom: 18px;
+    z-index: 4;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: rgba(10,10,10,0.6);
+  }
+  .legend .row { display: flex; align-items: center; gap: 10px; }
+  .legend .swatch { width: 14px; height: 2px; }
+  .legend .swatch.uk { background: var(--vivid-purple); box-shadow: 0 0 8px rgba(176,41,255,0.7); }
+  .legend .swatch.us { background: var(--warm-orange); box-shadow: 0 0 8px rgba(241,91,64,0.7); }
+  .legend .dot { width: 10px; height: 10px; }
+  .legend .dot.hub-uk { background: var(--vivid-purple); border: 1px solid var(--off-white); border-radius: 50%; }
+  .legend .dot.hub-us { background: var(--warm-orange); border: 1px solid var(--off-white); border-radius: 50%; }
+  .legend .dot.dest { background: var(--dark-purple); border-radius: 50%; opacity: 0.7; }
+
+  /* Live ticker */
+  .ticker-wrap {
+    position: absolute;
+    /* Anchored to the globe's visual bottom-right.
+       Globe radius in screen space ≈ 33vh (camera fov 40°, distance 8.27, R=2). */
+    right: calc(50% - 33vh);
+    bottom: calc(50% - 33vh);
+    z-index: 4;
+    background: rgba(255,255,255,0.85);
+    border: 1px solid var(--line);
+    box-shadow: 0 12px 40px rgba(71,10,104,0.10);
+    padding: 10px 14px;
+    min-width: 240px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  .ticker-head {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: rgba(10,10,10,0.5);
+    margin-bottom: 6px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .ticker-head .live { color: var(--warm-orange); }
+  .ticker-line {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink);
+    line-height: 1.4;
+    letter-spacing: 0.02em;
+    min-height: 32px;
+  }
+  .ticker-line .arrow { color: var(--warm-orange); margin: 0 6px; }
+  .ticker-line .amt { color: var(--dark-purple); font-weight: 500; }
+
+  /* ==================== SEARCH BAR ==================== */
+  .search-shell {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 8;
+    width: min(420px, calc(100vw - 96px));
+    pointer-events: auto;
+    /* Stack suggestions ABOVE the search box now that the shell sits at
+       the bottom of the viewport. */
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .search-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    background: rgba(255,255,255,0.94);
+    border: 1px solid var(--line-strong);
+    box-shadow: none;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+  .search-box:focus-within {
+    border-color: var(--vivid-purple);
+    box-shadow: none;
+  }
+  .search-box::before {
+    content: "";
+    width: 8px; height: 8px;
+    border-left: 1px solid var(--warm-orange);
+    border-top: 1px solid var(--warm-orange);
+    position: absolute; left: -1px; top: -1px;
+  }
+  .search-icon {
+    width: 14px; height: 14px;
+    flex-shrink: 0;
+    color: var(--dark-purple);
+  }
+  .search-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    min-width: 0;
+    font-weight: 400;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .search-input::placeholder { color: rgba(10,10,10,0.42); }
+  .search-kbd {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: rgba(10,10,10,0.5);
+    border: 1px solid var(--line-strong);
+    padding: 2px 5px;
+    letter-spacing: 0.06em;
+    flex-shrink: 0;
+    background: rgba(245,245,245,0.6);
+  }
+  .search-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--warm-orange);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    flex-shrink: 0;
+  }
+
+  /* Suggestions dropdown */
+  .search-suggest {
+    /* Margin sits below the suggestions in DOM order, but column-reverse
+       puts the suggestions above the search box — so this gap appears
+       between the two as expected. */
+    margin-bottom: 8px;
+    background: rgba(255,255,255,0.97);
+    border: 1px solid var(--line-strong);
+    box-shadow: 0 18px 50px rgba(71,10,104,0.18);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    max-height: 360px;
+    overflow-y: auto;
+    display: none;
+  }
+  .search-shell.has-results .search-suggest { display: block; }
+  .suggest-section {
+    padding: 8px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .suggest-section:last-child { border-bottom: none; }
+  .suggest-head {
+    padding: 6px 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: rgba(10,10,10,0.45);
+  }
+  .suggest-row {
+    padding: 9px 16px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    transition: background 0.12s ease;
+    font-size: 13px;
+  }
+  .suggest-row:hover, .suggest-row.active {
+    background: rgba(176,41,255,0.08);
+  }
+  .suggest-name {
+    color: var(--ink);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .suggest-name mark {
+    background: rgba(241,91,64,0.18);
+    color: var(--warm-orange);
+    padding: 0 1px;
+  }
+  .suggest-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: rgba(10,10,10,0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    flex-shrink: 0;
+  }
+  .suggest-empty {
+    padding: 24px 16px;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: rgba(10,10,10,0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+  }
+
+  /* ==================== RESULT MODAL ==================== */
+  /* Backdrop kept for click-to-dismiss but invisible — the result card
+     is now docked, not a centered overlay, so we don't dim the globe. */
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: transparent;
+    z-index: 50;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.32s ease;
+  }
+  .modal-backdrop.show { opacity: 1; pointer-events: auto; }
+  /* Result card: docks above the search bar at the bottom of the viewport.
+     Slides up on open; the search bar remains visible and usable below. */
+  .modal {
+    position: fixed;
+    left: 50%;
+    bottom: 92px; /* sits clear of the (now-shorter) search bar */
+    transform: translate(-50%, 24px);
+    width: min(560px, calc(100vw - 64px));
+    max-height: min(520px, calc(100vh - 180px));
+    background: #FFFFFF;
+    border: 1px solid var(--line-strong);
+    box-shadow: 0 24px 60px rgba(71,10,104,0.20), 0 6px 20px rgba(71,10,104,0.10);
+    z-index: 51;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.36s cubic-bezier(.2,.8,.2,1), opacity 0.32s ease;
+  }
+  .modal.show {
+    transform: translate(-50%, 0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+  /* Brand corner ticks */
+  .modal::before, .modal::after {
+    content: "";
+    position: absolute;
+    width: 14px; height: 14px;
+    z-index: 2;
+  }
+  .modal::before {
+    top: 0; left: 0;
+    border-left: 1px solid var(--warm-orange);
+    border-top: 1px solid var(--warm-orange);
+  }
+  .modal::after {
+    bottom: 0; right: 0;
+    border-right: 1px solid var(--warm-orange);
+    border-bottom: 1px solid var(--warm-orange);
+  }
+
+  .modal-head {
+    padding: 16px 18px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    border-bottom: 1px solid var(--line);
+    background:
+      radial-gradient(600px 200px at 90% 0%, rgba(176,41,255,0.10), transparent 60%),
+      linear-gradient(180deg, #FBF7FE 0%, #FFFFFF 100%);
+  }
+  .modal-tag {
+    display: none;
+  }
+  .modal-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    letter-spacing: -0.03em;
+    color: var(--dark-purple);
+    line-height: 1.05;
+    margin-bottom: 0;
+  }
+  .modal-title .iso {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--vivid-purple);
+    margin-left: 8px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    vertical-align: middle;
+  }
+  .modal-sub {
+    display: none;
+  }
+  .modal-close {
+    appearance: none;
+    background: transparent;
+    border: 1px solid var(--line-strong);
+    width: 24px; height: 24px;
+    cursor: pointer;
+    color: var(--dark-purple);
+    flex-shrink: 0;
+    transition: background 0.18s ease;
+    display: grid; place-items: center;
+  }
+  .modal-close:hover { background: rgba(176,41,255,0.10); }
+
+  .modal-body {
+    padding: 16px 18px 18px;
+    overflow-y: auto;
+    flex: 1;
+    font-size: 11px;
+  }
+
+  /* hub badges */
+  .hub-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .hub-grid.single { grid-template-columns: 1fr; }
+  .hub-card {
+    border: 1px solid var(--line);
+    padding: 10px 12px 10px;
+    position: relative;
+    background: rgba(245,245,245,0.4);
+    transition: all 0.2s ease;
+  }
+  .hub-card.preferred {
+    border-color: var(--vivid-purple);
+    background: rgba(176,41,255,0.04);
+    box-shadow: 0 0 0 1px rgba(176,41,255,0.15);
+  }
+  .hub-card.preferred .hub-card-title { color: var(--dark-purple); }
+  .hub-card.preferred::after {
+    content: "PREFERRED";
+    position: absolute; top: 8px; right: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7px;
+    color: var(--warm-orange);
+    letter-spacing: 0.16em;
+  }
+  .hub-card.dim { opacity: 0.55; }
+  .hub-card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+  .hub-card-head .hub-card-title { margin-bottom: 0; }
+  .hub-card-delivery {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.10em;
+    color: rgba(10,10,10,0.7);
+    background: rgba(10,10,10,0.04);
+    border: 1px solid var(--line);
+    padding: 3px 7px;
+    white-space: nowrap;
+  }
+  .hub-card.uk .hub-card-delivery {
+    color: var(--warm-orange);
+    background: rgba(241,91,64,0.06);
+    border-color: rgba(241,91,64,0.25);
+  }
+  .hub-card.us .hub-card-delivery {
+    color: var(--warm-orange);
+    background: rgba(241,91,64,0.06);
+    border-color: rgba(241,91,64,0.25);
+  }
+  .hub-card-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    margin-bottom: 4px;
+  }
+  .hub-card.uk .hub-card-tag { color: var(--vivid-purple); }
+  .hub-card.us .hub-card-tag { color: var(--warm-orange); }
+  .hub-card-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    color: var(--dark-purple);
+    letter-spacing: -0.015em;
+    margin-bottom: 6px;
+  }
+  /* Hub-card .uk / .us re-tint to keep brand cue without the small tag */
+  .hub-card.us .hub-card-title { color: var(--ink); }
+  .chip-sub {
+    color: rgba(10,10,10,0.55);
+    font-weight: 400;
+    margin-left: 4px;
+  }
+  .hub-card-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    color: rgba(10,10,10,0.55);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 6px;
+  }
+  .hub-card-na {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    color: rgba(10,10,10,0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    padding: 4px 0;
+  }
+  /* SLA pill */
+  .sla {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 7px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    border: 1px solid currentColor;
+  }
+  .sla::before {
+    content: "";
+    width: 5px; height: 5px; border-radius: 50%;
+    background: currentColor;
+  }
+  .sla.real-time { color: var(--warm-orange); }
+  .sla.same-day  { color: var(--vivid-purple); }
+  .sla.next-day  { color: var(--dark-purple); }
+  .sla.two-day   { color: rgba(10,10,10,0.6); }
+  .sla.unknown   { color: rgba(10,10,10,0.45); }
+
+  /* detail rows */
+  .detail-row {
+    display: grid;
+    grid-template-columns: 78px 1fr;
+    gap: 8px;
+    padding: 7px 0;
+    border-top: 1px solid var(--line);
+    align-items: start;
+    font-size: 11px;
+  }
+  .detail-row:first-child { border-top: none; }
+  .detail-row .k {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: rgba(10,10,10,0.5);
+    padding-top: 2px;
+  }
+  .detail-row .v {
+    color: var(--ink);
+    line-height: 1.5;
+  }
+  .chip-list { display: flex; flex-wrap: wrap; gap: 4px; }
+  .chip {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 3px 6px;
+    border: 1px solid var(--line-strong);
+    background: rgba(255,255,255,0.7);
+    color: var(--ink);
+  }
+  .chip.scheme { color: var(--dark-purple); border-color: rgba(71,10,104,0.30); }
+  .chip.payout { color: var(--ink); }
+
+  .why-block {
+    margin-top: 14px;
+    padding: 10px 12px;
+    background: rgba(176,41,255,0.05);
+    border-left: 2px solid var(--vivid-purple);
+    font-size: 11px;
+    line-height: 1.5;
+    color: rgba(10,10,10,0.78);
+  }
+  .why-block .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    color: var(--vivid-purple);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    margin-bottom: 5px;
+    display: block;
+  }
+
+  /* fallback (SWIFT) */
+  .fallback-block {
+    padding: 16px;
+    border: 1px dashed var(--line-strong);
+    background: rgba(245,245,245,0.5);
+    text-align: center;
+  }
+  .fallback-block h4 {
+    font-weight: 500;
+    font-size: 13px;
+    color: var(--dark-purple);
+    margin-bottom: 4px;
+    letter-spacing: -0.02em;
+  }
+  .fallback-block p {
+    font-size: 11px;
+    color: rgba(10,10,10,0.65);
+    line-height: 1.5;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  /* currency view */
+  .ccy-stat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    margin-bottom: 14px;
+    border-top: 1px solid var(--line-strong);
+    border-bottom: 1px solid var(--line-strong);
+  }
+  .ccy-stat {
+    padding: 10px 8px 8px;
+    border-right: 1px solid var(--line);
+  }
+  .ccy-stat:last-child { border-right: none; }
+  .ccy-stat-num {
+    font-weight: 600;
+    font-size: 18px;
+    letter-spacing: -0.03em;
+    color: var(--dark-purple);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .ccy-stat-num em { color: var(--warm-orange); font-style: normal; }
+  .ccy-stat-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    color: rgba(10,10,10,0.55);
+    text-transform: uppercase;
+    letter-spacing: 0.13em;
+  }
+
+  .dest-list-toggle {
+    appearance: none;
+    background: transparent;
+    border: 1px solid var(--line-strong);
+    padding: 6px 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--dark-purple);
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.18s ease;
+  }
+  .dest-list-toggle:hover { background: rgba(176,41,255,0.05); }
+  .dest-list-toggle .arr { transition: transform 0.2s ease; }
+  .dest-list-toggle.open .arr { transform: rotate(90deg); }
+  .dest-list {
+    display: none;
+    margin-top: 12px;
+    padding: 14px 16px;
+    background: rgba(245,245,245,0.5);
+    border: 1px solid var(--line);
+    columns: 3;
+    column-gap: 24px;
+    font-size: 12px;
+    color: var(--ink);
+    line-height: 1.7;
+  }
+  .dest-list.open { display: block; }
+  .dest-list span {
+    display: block;
+    padding: 1px 0;
+    cursor: pointer;
+    transition: color 0.15s ease;
+    break-inside: avoid;
+  }
+  .dest-list span:hover { color: var(--warm-orange); }
+
+  /* Highlight pulse on globe-selected destination */
+  /* (handled in shaders/JS) */
+
+  @media (max-width: 480px) {
+    .hub-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 760px) {
+    .modal-head { padding: 14px 14px 12px; }
+    .modal-body { padding: 14px; }
+    .modal-title { font-size: 18px; }
+    .hub-grid { grid-template-columns: 1fr 1fr; }
+    .ccy-stat-grid { grid-template-columns: 1fr; }
+    .ccy-stat { border-right: none; border-bottom: 1px solid var(--line); }
+    .dest-list { columns: 1; }
+  }
+
+  @media (max-width: 1100px) {
+    .hero { grid-template-columns: 1fr; padding: 16px 24px 40px; }
+    .globe-col { max-width: 640px; margin: 0 auto; height: min(70vh, 640px); }
+    .below { padding: 0 24px 60px; }
+    .pillars { grid-template-columns: 1fr; }
+    .pillar { border-right: none; border-bottom: 1px solid var(--line); }
+    .pillar:last-child { border-bottom: none; }
+    .topbar { padding: 20px 24px; }
+    .topbar-meta { display: none; }
+    .strip { padding: 22px 24px; }
+  }
+  @media (max-width: 600px) {
+    h1 { font-size: 40px; }
+    .stat-row { grid-template-columns: 1fr; }
+    .ticker-wrap { display: none; }
+  }
+</style>
+</head>
+<body>
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+    <rect width="400" height="300" fill="#0a0e1a"/>
+    <circle cx="200" cy="150" r="70" fill="none" stroke="#3b82f6" stroke-width="2" opacity="0.6"/>
+    <ellipse cx="200" cy="150" rx="70" ry="22" fill="none" stroke="#3b82f6" stroke-width="1.2" opacity="0.5"/>
+    <ellipse cx="200" cy="150" rx="22" ry="70" fill="none" stroke="#3b82f6" stroke-width="1.2" opacity="0.5"/>
+    <path d="M 145 130 Q 200 80 255 130" fill="none" stroke="#f59e0b" stroke-width="2"/>
+    <path d="M 145 170 Q 200 220 255 170" fill="none" stroke="#10b981" stroke-width="2"/>
+    <circle cx="145" cy="130" r="3" fill="#f59e0b"/>
+    <circle cx="255" cy="130" r="3" fill="#f59e0b"/>
+    <circle cx="145" cy="170" r="3" fill="#10b981"/>
+    <circle cx="255" cy="170" r="3" fill="#10b981"/>
+  </svg>
+</template>
+<div class="stage">
+
+  <!-- Full-bleed globe canvas (the only visual layer) -->
+  <div class="globe-bg"><canvas id="globe-canvas"></canvas></div>
+
+  <!-- Floating search bar -->
+  <div class="search-shell" id="search-shell">
+    <div class="search-box">
+      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      <input type="text" class="search-input" id="search-input" placeholder="Search for a country to see supported methods" autocomplete="off" spellcheck="false" />
+    </div>
+    <div class="search-suggest" id="search-suggest" role="listbox"></div>
+  </div>
+
+  <!-- Live payment ticker -->
+  <div class="ticker-wrap">
+    <div class="ticker-head"><span>LIVE PAYMENT FLOW</span><span class="live">● REAL‑TIME</span></div>
+    <div class="ticker-line" id="ticker-line">London <span class="arrow">→</span> Sydney<br/><span class="amt">£42,180.00</span> · GBP→AUD</div>
+  </div>
+
+  <!-- Hub tooltip (rendered via JS on hub hover) -->
+  <div class="hub-tooltip" id="hub-tooltip">
+    <div class="tooltip-tag" id="t-tag">HUB</div>
+    <div class="tooltip-name" id="t-name">—</div>
+    <div class="tooltip-meta" id="t-meta"></div>
+  </div>
+
+</div>
+
+<!-- Result modal (country / currency detail) -->
+<div class="modal-backdrop" id="modal-backdrop" aria-hidden="true"></div>
+<aside class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true">
+  <header class="modal-head">
+    <div>
+      <div class="modal-tag" id="modal-tag">DESTINATION COVERAGE</div>
+      <h2 class="modal-title" id="modal-title">—</h2>
+      <div class="modal-sub" id="modal-sub">—</div>
+    </div>
+    <button class="modal-close" id="modal-close" aria-label="Close">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="2" y1="2" x2="12" y2="12"/><line x1="12" y1="2" x2="2" y2="12"/></svg>
+    </button>
+  </header>
+  <div class="modal-body" id="modal-body">—</div>
+</aside>
+
+<script>
+// ---------- DATA LOADER ----------
+// Single source of truth: payment-options.json (sibling file, hosted with
+// this index.html on GitHub). Loaded over fetch() so the configuration can
+// be edited and republished independently of this code.
+//
+// On-disk shape is HUB-KEYED: a top-level `hubs` array, each hub holding
+// its own `supportedCountries` (with per-country paymentMethods + delivery)
+// and its own `fundingCurrencies`. We invert that here into the flat
+// country/currency/scheme indexes the rest of the app already consumes.
+window.__HUB_META = null;       // populated below; used by the globe layer
+window.__PAYMENT_OPTIONS = null; // raw JSON, kept for diagnostics
+
+window.VitesseDataReady = (async () => {
+  let raw;
+  try {
+    const res = await fetch('payment-options.json', { cache: 'no-cache' });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    raw = await res.json();
+  } catch (err) {
+    throw new Error('Failed to load payment-options.json: ' + err.message);
+  }
+  window.__PAYMENT_OPTIONS = raw;
+
+  const hubsArr = raw.hubs || [];
+  // Hub identity + funding currencies, keyed by hub id, for the globe layer.
+  window.__HUB_META = hubsArr.reduce((acc, h) => {
+    acc[h.id] = {
+      id: h.id, name: h.name, entity: h.entity, regulator: h.regulator,
+      city: h.city, lat: h.lat, lon: h.lon,
+      fundingCurrencies: h.fundingCurrencies || [],
+    };
+    return acc;
+  }, {});
+
+  // Invert hub-keyed structure → flat country index.
+  // Each country may appear under multiple hubs; we merge methods + delivery.
+  const countries = {};
+  hubsArr.forEach(hub => {
+    (hub.supportedCountries || []).forEach(d => {
+      let c = countries[d.country];
+      if (!c) {
+        c = countries[d.country] = {
+          name: d.country,
+          iso2: d.iso2, iso3: d.iso3,
+          lat: d.lat, lon: d.lon,
+          ccy: d.currency, region: d.region,
+          paymentMethods: [],   // union, with hubs[] reattached
+          ukMethods: [],
+          usMethods: [],
+          hubDelivery: { uk: null, us: null },
+        };
+      }
+      c.hubDelivery[hub.id] = d.delivery || null;
+      const bucketKey = hub.id + 'Methods';
+      (d.paymentMethods || []).forEach(pm => {
+        const annotated = { type: pm.type };
+        if (pm.type === 'Domestic Bank Transfer') {
+          annotated.schemes = Array.isArray(pm.schemes) ? pm.schemes : [];
+        }
+        if (c[bucketKey]) c[bucketKey].push(annotated);
+        // Union list with hubs[] — merge into existing entry of same type
+        // (and same schemes, when applicable) so the legacy consumer that
+        // expects { type, hubs[], schemes[] } still works.
+        const sameSchemes = (a, b) => {
+          if (a.type !== 'Domestic Bank Transfer') return true;
+          const sa = (a.schemes || []).slice().sort().join('|');
+          const sb = (b.schemes || []).slice().sort().join('|');
+          return sa === sb;
+        };
+        let existing = c.paymentMethods.find(p => p.type === pm.type && sameSchemes(p, annotated));
+        if (!existing) {
+          existing = { type: pm.type, hubs: [] };
+          if (pm.type === 'Domestic Bank Transfer') existing.schemes = annotated.schemes;
+          c.paymentMethods.push(existing);
+        }
+        if (!existing.hubs.includes(hub.id)) existing.hubs.push(hub.id);
+      });
+    });
+  });
+
+  // Currency index — group countries by currency
+  const currencies = {};
+  Object.values(countries).forEach(c => {
+    const code = c.ccy;
+    if (!currencies[code]) currencies[code] = { code, name: code, countries: [] };
+    currencies[code].countries.push(c.name);
+  });
+  Object.values(currencies).forEach(cur => cur.countries.sort());
+
+  // Scheme reverse index — every Domestic Bank Transfer scheme → countries[]
+  const schemes = {};
+  Object.values(countries).forEach(c => {
+    (c.paymentMethods || []).forEach(pm => {
+      if (pm.type !== 'Domestic Bank Transfer') return;
+      (pm.schemes || []).forEach(s => {
+        if (!schemes[s]) schemes[s] = { name: s, countries: [] };
+        if (!schemes[s].countries.includes(c.name)) schemes[s].countries.push(c.name);
+      });
+    });
+  });
+  Object.values(schemes).forEach(sc => sc.countries.sort());
+
+  const data = { countries, currencies, schemes, regions: raw.regions || [] };
+  window.VitesseData = data;
+  window.dispatchEvent(new CustomEvent('vitesse-data-ready', { detail: data }));
+  return data;
+})().catch(err => {
+  console.error('[vitesse] data load failed', err);
+  return { countries: {}, currencies: {}, schemes: {}, regions: [] };
+});
+</script>
+
+<script src="cities-500.js"></script>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js"
+  }
+}
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+
+// ---------- DATA ----------
+// Hub identity (city / lat,lon / entity / regulator / fundingCurrencies)
+// is loaded from payment-options.json via window.__HUB_META. We block the
+// module on VitesseDataReady before building hubs.
+await window.VitesseDataReady;
+const HUB_COLORS = { uk: 0xB029FF, us: 0xF15B40 };
+const HUBS = [
+  { ...(window.__HUB_META?.uk || { id:'uk', name:'UK Hub', city:'London', entity:'Vitesse PSP Ltd', regulator:'FCA · DNB', lat:51.5074, lon:-0.1278, fundingCurrencies:[] }),
+    color: HUB_COLORS.uk, currencies: (window.__HUB_META?.uk?.fundingCurrencies) || [] },
+  { ...(window.__HUB_META?.us || { id:'us', name:'US Hub', city:'New York', entity:'Vitesse Trust Company, LLC', regulator:'NYDFS', lat:40.7128, lon:-74.0060, fundingCurrencies:[] }),
+    color: HUB_COLORS.us, currencies: (window.__HUB_META?.us?.fundingCurrencies) || [] },
+];
+
+// Destination cities — 500 cities across all 144 supported countries.
+// Loaded from cities-500.js (see <script src> in head).
+// Each entry: { name, lat, lon, country, region: 'us'|'eu'|'rest', via: 'us'|'uk'|'both' }.
+// `region` drives hub→destination traffic-mix weighting.
+// `via` controls which hub(s) can route to this destination.
+const DESTS = window.__DESTS_500 || [];
+
+// ---------- SETUP ----------
+const canvas = document.getElementById('globe-canvas');
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 100);
+// Pull camera back to ~1/0.75x so globe appears at ~75% of previous scale
+camera.position.set(0, 0, 8.27);
+
+// Lighting (white-mode: tighter contrast, less colored cast)
+scene.add(new THREE.AmbientLight(0xffffff, 0.85));
+const keyLight = new THREE.DirectionalLight(0xffffff, 0.55);
+keyLight.position.set(-3, 2, 4);
+scene.add(keyLight);
+const rim = new THREE.DirectionalLight(0x831fbf, 0.35);
+rim.position.set(3, -1, -2);
+scene.add(rim);
+
+// Globe rig: outer tilt group (camera-style pitch) wraps inner spin group
+// (rotates around true vertical Y axis). This keeps the north pole pinned
+// to the top of the screen no matter how much the user spins.
+const globeTilt = new THREE.Group();
+scene.add(globeTilt);
+const globe = new THREE.Group();
+globeTilt.add(globe);
+// Slight forward tilt so the northern hemisphere reads naturally.
+// Defined as a single source of truth so resetView() returns to the same pose.
+const BASE_TILT_X = 0.32 + (10 * Math.PI / 180); // ~28° forward
+globeTilt.rotation.x = BASE_TILT_X;
+
+const RADIUS = 2;
+
+// Sphere base (off-white with slight purple wash so dots read clearly)
+const sphereGeo = new THREE.SphereGeometry(RADIUS, 64, 64);
+const sphereMat = new THREE.MeshPhongMaterial({
+  color: 0xF7F4FA,
+  emissive: 0xEFE9F4,
+  shininess: 4,
+  specular: 0xCFBFE0,
+  transparent: true,
+  opacity: 1.0,
+});
+const sphere = new THREE.Mesh(sphereGeo, sphereMat);
+globe.add(sphere);
+
+// Atmosphere glow (back-side rim)
+const atmoGeo = new THREE.SphereGeometry(RADIUS * 1.06, 64, 64);
+const atmoMat = new THREE.ShaderMaterial({
+  vertexShader: `
+    varying vec3 vNormal;
+    void main() {
+      vNormal = normalize(normalMatrix * normal);
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+    }`,
+  fragmentShader: `
+    varying vec3 vNormal;
+    void main() {
+      float intensity = pow(0.55 - dot(vNormal, vec3(0.0, 0.0, 1.0)), 2.4);
+      vec3 colA = vec3(0.51, 0.12, 0.75);  // purple
+      vec3 colB = vec3(0.95, 0.36, 0.25);  // warm orange
+      vec3 col = mix(colA, colB, 0.30);
+      gl_FragColor = vec4(col, 1.0) * intensity * 0.5;
+    }`,
+  blending: THREE.AdditiveBlending,
+  side: THREE.BackSide,
+  transparent: true,
+});
+const atmosphere = new THREE.Mesh(atmoGeo, atmoMat);
+scene.add(atmosphere);
+
+// Lat/lon graticule
+function makeGraticule() {
+  const grp = new THREE.Group();
+  const mat = new THREE.LineBasicMaterial({ color: 0xCFBFE0, transparent: true, opacity: 0.55 });
+  // parallels
+  for (let lat = -75; lat <= 75; lat += 15) {
+    const pts = [];
+    const phi = (90 - lat) * Math.PI / 180;
+    for (let lon = 0; lon <= 360; lon += 4) {
+      const theta = lon * Math.PI / 180;
+      pts.push(new THREE.Vector3(
+        RADIUS * 1.001 * Math.sin(phi) * Math.cos(theta),
+        RADIUS * 1.001 * Math.cos(phi),
+        -RADIUS * 1.001 * Math.sin(phi) * Math.sin(theta),
+      ));
+    }
+    const g = new THREE.BufferGeometry().setFromPoints(pts);
+    grp.add(new THREE.Line(g, mat));
+  }
+  // meridians
+  for (let lon = 0; lon < 360; lon += 15) {
+    const pts = [];
+    const theta = lon * Math.PI / 180;
+    for (let lat = -90; lat <= 90; lat += 4) {
+      const phi = (90 - lat) * Math.PI / 180;
+      pts.push(new THREE.Vector3(
+        RADIUS * 1.001 * Math.sin(phi) * Math.cos(theta),
+        RADIUS * 1.001 * Math.cos(phi),
+        -RADIUS * 1.001 * Math.sin(phi) * Math.sin(theta),
+      ));
+    }
+    const g = new THREE.BufferGeometry().setFromPoints(pts);
+    grp.add(new THREE.Line(g, mat));
+  }
+  return grp;
+}
+globe.add(makeGraticule());
+
+// Continent dot-grid (procedural, no external textures)
+// We render a sphere of small dots and only show those over land using a simple
+// equirectangular landmask drawn from a low-res polygon set encoded as bitmap.
+// To keep the file standalone, we use a small bundled landmask: a 360x180 grid
+// derived from coarse country outlines. We approximate via mathematical land tests
+// using a base map texture generated procedurally from an embedded outline.
+//
+// Approach: use an offscreen canvas to draw a stylized world map (continents as
+// hexagonal-tinted shapes) then sample it.
+function makeLandmaskCanvas() {
+  const W = 720, H = 360;
+  const c = document.createElement('canvas');
+  c.width = W; c.height = H;
+  const ctx = c.getContext('2d');
+  ctx.fillStyle = '#000';
+  ctx.fillRect(0,0,W,H);
+  // Draw continents as filled white polygons (lon, lat) -> (x,y) equirect
+  const proj = (lon, lat) => [ ((lon + 180) / 360) * W, ((90 - lat) / 180) * H ];
+  const drawPoly = (pts) => {
+    ctx.beginPath();
+    pts.forEach(([lon,lat], i) => {
+      const [x,y] = proj(lon,lat);
+      if (i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+    });
+    ctx.closePath();
+    ctx.fill();
+  };
+  ctx.fillStyle = '#fff';
+
+  // Coarse continent outlines (lon, lat)
+  // North America (incl. Mexico down to the Guatemala border)
+  drawPoly([
+    [-168,66],[-160,70],[-141,70],[-128,70],[-95,72],[-82,74],[-68,68],[-58,52],
+    [-65,45],[-72,42],[-76,38],[-80,32],[-81,25],[-83,24],[-87,21],[-90,21],
+    [-92,18],     // Yucatán north
+    [-88,15.5],   // Belize / Guatemala border
+    [-92,15],     // Guatemala Pacific
+    [-95,16],[-100,17],[-105,20],[-109,23],[-110,26],[-114,28],[-117,32],
+    [-123,38],[-125,48],[-132,55],[-150,60],[-165,60],[-168,66]
+  ]);
+  // Central America (Guatemala → Panama isthmus)
+  drawPoly([
+    [-92,15],[-88,15.5],[-86,15],[-83,11],[-80,9],[-77,8.5],[-77,7.5],
+    [-79,8],[-82,8],[-85,11],[-89,13],[-92,14],[-92,15]
+  ]);
+  // South America
+  drawPoly([[-81,11],[-76,8],[-66,11],[-60,5],[-52,5],[-48,0],[-43,-7],[-39,-13],[-39,-23],[-48,-26],[-58,-34],[-58,-39],[-66,-43],[-72,-52],[-71,-55],[-67,-55],[-66,-46],[-71,-32],[-72,-18],[-78,-8],[-81,-2],[-79,3],[-81,11]]);
+  // Europe — single contiguous polygon covering Iberia, France, the Low
+  // Countries, Germany, the Nordic peninsula and Eastern Europe down to
+  // the northern Mediterranean. Italy / Balkans / Greece are handled by
+  // the southern polygon below; the two polygons overlap inland so there
+  // is no seam.
+  drawPoly([
+    // Gibraltar → Atlantic Iberia → Bay of Biscay → Brittany
+    [-5.5,36],[-9,37],[-9.5,39],[-9,41],[-9,43.5],
+    [-2,43.5],[-1.5,46],[-4,48],[-5,48.5],[-2,49],
+    // Channel coast → Low Countries → Jutland
+    [2,51],[4,52],[7,53],[9,54],[8,56],[11,58],
+    // Scandinavia (Norway / Sweden / Finland up to North Cape)
+    [5,58],[5,62],[12,65],[18,68],[24,70],[28,71],[31,70],
+    // Russia / Baltics / Eastern Europe back south
+    [33,66],[40,64],[40,55],[36,50],
+    // Black Sea north shore → northern Mediterranean
+    [30,46],[28,42],[20,42],[14,44],[7,44],
+    // Mediterranean Iberia back to Gibraltar
+    [3,43],[-1,38],[-3,37],[-5.5,36]
+  ]);
+  // Italy / Balkans / Greece / Anatolia (overlaps Europe poly inland)
+  drawPoly([
+    [7,44],[10,44],[12,46],[14,46],[18,46],[20,44],[22,44],
+    [26,42],[28,41],[36,41],[36,36],[32,36],[28,37],
+    [24,35],[22,38],[18,40],[15,40],[12,38],[10,42],[7,44]
+  ]);
+  // Africa
+  drawPoly([[-17,15],[-16,22],[-5,30],[10,33],[20,32],[33,31],[35,23],[43,12],[51,12],[42,-1],[40,-8],[40,-18],[35,-25],[27,-34],[20,-34],[14,-22],[12,-15],[8,-1],[6,4],[-2,5],[-8,5],[-15,12],[-17,15]]);
+  // --- ASIA, rebuilt as clean separate regional polygons ---
+  // Each shape is a simple, mostly-convex outline. They overlap slightly
+  // inland so there are no visible seams where they meet.
+
+  // Middle East / Anatolia / Arabian peninsula / Iran
+  drawPoly([[26,40],[32,42],[40,42],[48,40],[55,38],[60,30],[60,22],[55,18],[50,14],[45,12],[42,13],[38,17],[35,22],[34,28],[33,31],[28,33],[26,36],[26,40]]);
+
+  // Russia / Siberia — the big northern band, single clean polygon
+  drawPoly([[28,55],[40,52],[55,52],[70,54],[85,53],[100,52],[115,52],[130,53],[145,57],[160,62],[175,66],[180,68],[180,77],[160,77],[140,77],[120,77],[100,76],[80,73],[60,71],[45,68],[32,66],[28,60],[28,55]]);
+
+  // China / Mongolia / Korea — east-Asian mainland to the Vietnam coast
+  drawPoly([[75,40],[85,44],[95,46],[105,46],[115,46],[123,44],[128,40],[127,36],[122,32],[120,28],[117,24],[110,21],[108,18],[105,15],[103,12],[100,16],[96,20],[92,24],[88,28],[82,32],[78,36],[75,40]]);
+
+  // Indian subcontinent (India + Pakistan + Bangladesh)
+  drawPoly([[68,24],[72,28],[77,32],[81,30],[85,27],[89,26],[92,23],[91,21],[88,20],[83,16],[80,12],[78,8],[75,9],[73,14],[70,19],[68,24]]);
+
+  // Mainland SE Asia (Thailand / Malaysia peninsula / Indochina)
+  drawPoly([[98,21],[102,18],[106,16],[109,14],[108,10],[105,4],[102,2],[100,6],[98,12],[97,17],[98,21]]);
+
+  // --- Indonesian archipelago: small island groups, not one giant blob ---
+  // Sumatra
+  drawPoly([[95,5],[100,4],[103,1],[105,-3],[103,-5],[99,-2],[96,2],[95,5]]);
+  // Java + Bali
+  drawPoly([[105,-6],[112,-7],[116,-8],[115,-9],[110,-9],[105,-7],[105,-6]]);
+  // Borneo (Kalimantan)
+  drawPoly([[109,4],[114,5],[118,4],[119,0],[117,-3],[113,-3],[110,-1],[109,4]]);
+  // Sulawesi
+  drawPoly([[120,1],[124,2],[125,-2],[123,-5],[120,-3],[120,1]]);
+  // Papua / New Guinea
+  drawPoly([[131,-1],[138,-2],[145,-4],[150,-6],[148,-9],[141,-9],[135,-7],[131,-4],[131,-1]]);
+  // Philippines (rough)
+  drawPoly([[120,8],[123,10],[125,14],[124,17],[121,18],[120,14],[120,8]]);
+
+  // Australia
+  drawPoly([[114,-22],[122,-18],[131,-12],[137,-11],[142,-10],[146,-13],[150,-22],[153,-28],[150,-37],[143,-39],[136,-35],[127,-32],[118,-34],[114,-26],[114,-22]]);
+  // New Zealand (two islands -> coarse)
+  drawPoly([[170,-34],[173,-37],[174,-40],[173,-42],[167,-46],[166,-46],[170,-43],[170,-34]]);
+  // Greenland
+  drawPoly([[-50,60],[-30,60],[-22,68],[-22,80],[-40,82],[-55,75],[-50,60]]);
+  // Madagascar
+  drawPoly([[43,-12],[50,-15],[50,-25],[44,-25],[43,-18],[43,-12]]);
+  // British Isles
+  drawPoly([[-11,52],[-6,55],[-2,58],[1,58],[2,53],[1,51],[-5,50],[-11,52]]);
+  // Japan
+  drawPoly([[131,31],[140,35],[142,40],[145,44],[140,45],[136,38],[133,34],[131,31]]);
+
+  return ctx.getImageData(0,0,W,H);
+}
+
+let landMask = makeLandmaskCanvas();
+function isLand(lat, lon) {
+  const W = landMask.width, H = landMask.height;
+  let x = Math.floor(((lon + 180) / 360) * W);
+  let y = Math.floor(((90 - lat) / 180) * H);
+  if (x<0) x=0; if (x>=W) x=W-1; if (y<0) y=0; if (y>=H) y=H-1;
+  const i = (y * W + x) * 4;
+  return landMask.data[i] > 100;
+}
+
+// Build dot mesh (instanced spheres) only over land
+function makeDots(step) {
+  const positions = [];
+  const STEP = step || 1.6; // degrees
+  for (let lat = -80; lat <= 80; lat += STEP) {
+    // longitude step compensates for latitude convergence
+    const lonStep = STEP / Math.max(Math.cos(lat * Math.PI/180), 0.18);
+    for (let lon = -180; lon < 180; lon += lonStep) {
+      if (!isLand(lat, lon)) continue;
+      const phi = (90 - lat) * Math.PI/180;
+      const theta = lon * Math.PI/180;
+      const r = RADIUS * 1.005;
+      positions.push(
+        r * Math.sin(phi) * Math.cos(theta),
+        r * Math.cos(phi),
+        -r * Math.sin(phi) * Math.sin(theta),
+      );
+    }
+  }
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+  const mat = new THREE.PointsMaterial({
+    color: 0x470A68,
+    size: 0.014,
+    transparent: true,
+    opacity: 0.85,
+    sizeAttenuation: true,
+  });
+  return new THREE.Points(geo, mat);
+}
+let dotsMesh = makeDots();
+globe.add(dotsMesh);
+
+// ---------- Real-coastline upgrade ----------
+// The procedural polygons above are a fallback. At runtime, fetch real
+// Natural Earth data (plain GeoJSON, no TopoJSON dependency) and rebuild
+// the landmask + dot grid for a properly accurate world map. Tries 50m
+// (high detail) first, falls back to 110m, falls back to procedural.
+window.__upgradeState = 'pending';
+(async function upgradeLandmask() {
+  window.__upgradeState = 'started';
+  const SOURCES = [
+    // Higher detail \u2014 ~500KB, gives noticeably crisper coastlines
+    'https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_50m_land.geojson',
+    // Smaller, still much better than the procedural shapes
+    'https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_110m_land.geojson',
+  ];
+
+  let gj = null;
+  for (const url of SOURCES) {
+    try {
+      const res = await fetch(url, { mode: 'cors' });
+      if (!res.ok) continue;
+      gj = await res.json();
+      console.log('[globe] loaded coastlines from', url, '\u2014',
+        gj.features ? gj.features.length : '?', 'features');
+      break;
+    } catch (e) {
+      console.warn('[globe] coastline fetch failed for', url, e);
+    }
+  }
+  if (!gj) {
+    console.warn('[globe] all coastline sources failed; staying on procedural fallback');
+    return;
+  }
+
+  // Render GeoJSON to a higher-res landmask canvas. Bumping to 1440x720
+  // (0.25\u00b0 per pixel) gives the dot-grid sampler enough fidelity to
+  // resolve smaller islands and coastline detail.
+  const W = 1440, H = 720;
+  const c = document.createElement('canvas');
+  c.width = W; c.height = H;
+  const ctx = c.getContext('2d');
+  ctx.fillStyle = '#000';
+  ctx.fillRect(0, 0, W, H);
+  ctx.fillStyle = '#fff';
+
+  const proj = (lon, lat) => [((lon + 180) / 360) * W, ((90 - lat) / 180) * H];
+
+  // Draw a single ring as a closed filled path. Splits the ring at any
+  // edge that crosses the antimeridian (\u00b1180\u00b0 longitude jump > 180\u00b0)
+  // so polygons like Russia/Antarctica don\u2019t streak across the canvas.
+  function drawRing(ring) {
+    if (!ring || ring.length < 3) return;
+    const segments = [[]];
+    for (let i = 0; i < ring.length; i++) {
+      const [lon, lat] = ring[i];
+      if (i > 0) {
+        const [prevLon] = ring[i - 1];
+        if (Math.abs(lon - prevLon) > 180) segments.push([]);
+      }
+      segments[segments.length - 1].push([lon, lat]);
+    }
+    segments.forEach(seg => {
+      if (seg.length < 3) return;
+      ctx.beginPath();
+      seg.forEach(([lon, lat], i) => {
+        const [x, y] = proj(lon, lat);
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      });
+      ctx.closePath();
+      ctx.fill();
+    });
+  }
+
+  function drawGeometry(geom) {
+    if (!geom) return;
+    if (geom.type === 'Polygon') {
+      geom.coordinates.forEach(drawRing);
+    } else if (geom.type === 'MultiPolygon') {
+      geom.coordinates.forEach(poly => poly.forEach(drawRing));
+    } else if (geom.type === 'GeometryCollection') {
+      geom.geometries.forEach(drawGeometry);
+    }
+  }
+
+  if (gj.type === 'FeatureCollection') {
+    gj.features.forEach(f => drawGeometry(f.geometry));
+  } else if (gj.type === 'Feature') {
+    drawGeometry(gj.geometry);
+  } else {
+    drawGeometry(gj);
+  }
+
+  landMask = ctx.getImageData(0, 0, W, H);
+
+  // Rebuild the dot grid against the new mask. Tighter step now that we
+  // have real data \u2014 islands and coastlines have detail to show.
+  try {
+    globe.remove(dotsMesh);
+    dotsMesh = makeDots(0.85);
+    globe.add(dotsMesh);
+    window.__upgradeState = 'done:' + dotsMesh.geometry.attributes.position.count;
+  } catch (e) {
+    window.__upgradeState = 'err-rebuild:' + e.message;
+  }
+})().catch(e => { window.__upgradeState = 'err-iife:' + e.message; });
+
+// Helpers
+function latLonToVec3(lat, lon, r = RADIUS) {
+  const phi = (90 - lat) * Math.PI/180;
+  const theta = lon * Math.PI/180;
+  return new THREE.Vector3(
+    r * Math.sin(phi) * Math.cos(theta),
+    r * Math.cos(phi),
+    -r * Math.sin(phi) * Math.sin(theta),
+  );
+}
+
+// Hub markers (hexagonal pillars)
+const hubMeshes = [];
+function makeHubMarker(hub) {
+  const grp = new THREE.Group();
+  grp.userData = { hub, type: 'hub' };
+
+  const pos = latLonToVec3(hub.lat, hub.lon, RADIUS);
+  // Outer ring
+  const ringGeo = new THREE.RingGeometry(0.045, 0.075, 6);
+  const ringMat = new THREE.MeshBasicMaterial({ color: hub.color, side: THREE.DoubleSide, transparent: true, opacity: 0.9 });
+  const ring = new THREE.Mesh(ringGeo, ringMat);
+  // Hex core
+  const coreGeo = new THREE.CircleGeometry(0.035, 6);
+  const coreMat = new THREE.MeshBasicMaterial({ color: 0xFFFFFF });
+  const core = new THREE.Mesh(coreGeo, coreMat);
+
+  // Pulse (animated)
+  const pulseGeo = new THREE.RingGeometry(0.06, 0.075, 24);
+  const pulseMat = new THREE.MeshBasicMaterial({ color: hub.color, side: THREE.DoubleSide, transparent: true, opacity: 0.6 });
+  const pulse = new THREE.Mesh(pulseGeo, pulseMat);
+
+  grp.add(ring, core, pulse);
+
+  // Orient flat to surface (face outward)
+  grp.position.copy(pos);
+  grp.lookAt(pos.clone().multiplyScalar(2));
+
+  grp.userData.pulse = pulse;
+  globe.add(grp);
+  hubMeshes.push(grp);
+
+  // Engraved-style label sitting on the globe surface, just south of the hub.
+  // Rendered to a canvas with a dark drop shadow + white highlight to fake
+  // the look of text physically carved into the sphere.
+  makeHubLabel(hub);
+
+  return grp;
+}
+
+function makeHubLabel(hub) {
+  const W = 768, H = 192;
+  const c = document.createElement('canvas');
+  c.width = W; c.height = H;
+  const ctx = c.getContext('2d');
+  ctx.clearRect(0, 0, W, H);
+
+  ctx.font = '900 110px "Inter", system-ui, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  // Slight letter-spacing feel: render once, then scale x slightly via transform
+  const text = (hub.id === 'uk' ? 'UK HUB' : 'US HUB');
+  const cx = W / 2, cy = H / 2;
+
+  // Carved/engraved effect — three-layer paint:
+  // 1) deep dark shadow offset down-right (the "depth" of the engraving)
+  ctx.fillStyle = 'rgba(20,5,40,0.85)';
+  ctx.fillText(text, cx + 3, cy + 3);
+  // 2) bright highlight offset up-left (the lit upper edge of the groove)
+  ctx.fillStyle = 'rgba(255,255,255,0.9)';
+  ctx.fillText(text, cx - 1.5, cy - 1.5);
+  // 3) main fill in the hub's color, slightly darker to read as "inside the groove"
+  const hex = '#' + hub.color.toString(16).padStart(6, '0');
+  ctx.fillStyle = hex;
+  ctx.globalAlpha = 0.95;
+  ctx.fillText(text, cx, cy);
+  ctx.globalAlpha = 1;
+
+  const tex = new THREE.CanvasTexture(c);
+  tex.anisotropy = 8;
+  tex.minFilter = THREE.LinearFilter;
+
+  const planeW = 0.62;
+  const planeH = planeW * (H / W);
+  const geo = new THREE.PlaneGeometry(planeW, planeH);
+  const mat = new THREE.MeshBasicMaterial({
+    map: tex, transparent: true, depthWrite: false,
+  });
+  const mesh = new THREE.Mesh(geo, mat);
+
+  // Position ~5° south of the hub, slightly off the surface so it doesn't
+  // z-fight with the dot-grid texture.
+  const labelLat = hub.lat - 4.5;
+  const pos = latLonToVec3(labelLat, hub.lon, RADIUS * 1.012);
+  mesh.position.copy(pos);
+
+  // Build an explicit local basis so the label always lies flush on the
+  // surface AND its "up" points toward the north pole tangent. This is
+  // more robust than lookAt + post-correction (which broke at certain
+  // latitudes because the angle sign flipped).
+  const normal = pos.clone().normalize();                  // out of surface
+  const worldUp = new THREE.Vector3(0, 1, 0);
+  const up = worldUp.clone()
+    .sub(normal.clone().multiplyScalar(worldUp.dot(normal)))
+    .normalize();                                          // toward N pole, on surface
+  const right = new THREE.Vector3().crossVectors(up, normal).normalize();
+  // Plane's local axes: +X = right, +Y = up, +Z = normal (out)
+  const m4 = new THREE.Matrix4().makeBasis(right, up, normal);
+  mesh.quaternion.setFromRotationMatrix(m4);
+
+  globe.add(mesh);
+  return mesh;
+}
+
+// Destination markers
+const destMeshes = [];
+const destByName = new Map();
+function makeDestMarker(dest) {
+  const pos = latLonToVec3(dest.lat, dest.lon, RADIUS * 1.005);
+  const geo = new THREE.SphereGeometry(0.018, 10, 10);
+  // 'both' destinations: shown in US orange since US is the geographically
+  // closer / preferred hub for the Americas. UK Hub also reaches them.
+  const color = dest.via === 'uk' ? 0xB029FF : 0xF15B40;
+  const mat = new THREE.MeshBasicMaterial({ color, transparent: true, opacity: 0.95 });
+  const m = new THREE.Mesh(geo, mat);
+  m.position.copy(pos);
+  // arrivals = list of in-flight payments currently in their post-landing
+  // fade phase for this destination. Drives bullet visibility/opacity/color.
+  m.userData = { dest, type: 'dest', arrivals: [] };
+  m.visible = false;
+  globe.add(m);
+  destMeshes.push(m);
+  destByName.set(dest.name, m);
+  return m;
+}
+
+HUBS.forEach(makeHubMarker);
+DESTS.forEach(makeDestMarker);
+
+// Arc routes from each hub to each destination of same `via`
+const routeGroup = new THREE.Group();
+globe.add(routeGroup);
+
+// One-shot payment animation: head sweeps to the destination, then tail
+// follows. When tail reaches the destination, the line is disposed.
+//   Phase A  head leads, tail at hub        → segment grows
+//   Phase B  both advance at same speed     → segment slides
+//   Phase C  head at destination, tail moves → segment shrinks
+function spawnPayment(from, to, color) {
+  const v1 = latLonToVec3(from.lat, from.lon, RADIUS);
+  const v2 = latLonToVec3(to.lat, to.lon, RADIUS);
+  const distance = v1.distanceTo(v2);
+  // Composite arc: smooth ascent → high cruise → smooth descent.
+  // Built by sampling along the great-circle (slerp) and modulating altitude
+  // with a profile that ramps up quickly, holds high in the middle, and
+  // ramps back down. Avoids any below-surface dip on long paths.
+  const angle = v1.angleTo(v2);
+  // Cruise altitude: low and roughly constant — paths hug the globe.
+  const cruise = THREE.MathUtils.clamp(distance * 0.04, 0.015, 0.06);
+  // Ramp distance (fraction of arc) — longer arcs ramp over a smaller fraction
+  // because in absolute angle the ramp can stay short and steep.
+  const rampFrac = THREE.MathUtils.clamp(0.6 / Math.max(angle, 0.01), 0.08, 0.45);
+  const N = 64;
+  const samplePts = new Array(N + 1);
+  // Great-circle direction: rotate v1 around the axis perp to (v1, v2)
+  const axis = new THREE.Vector3().crossVectors(v1, v2).normalize();
+  const v1n = v1.clone().normalize();
+  for (let i = 0; i <= N; i++) {
+    const u = i / N;
+    // Slerp position on the unit sphere
+    const dir = v1n.clone().applyAxisAngle(axis, angle * u);
+    // Altitude profile: smoothstep up over [0, rampFrac], hold at 1, smoothstep
+    // down over [1-rampFrac, 1]. Result is in [0, 1], multiplied by cruise.
+    let h;
+    if (u < rampFrac) {
+      const k = u / rampFrac;
+      h = k * k * (3 - 2 * k); // smoothstep
+    } else if (u > 1 - rampFrac) {
+      const k = (1 - u) / rampFrac;
+      h = k * k * (3 - 2 * k);
+    } else {
+      h = 1;
+    }
+    samplePts[i] = dir.multiplyScalar(RADIUS + cruise * h);
+  }
+  // Wrap in CatmullRom so the rest of the code keeps using getPoint / getLength.
+  const curve = new THREE.CatmullRomCurve3(samplePts, false, 'catmullrom', 0.5);
+
+  // Pre-sample the curve once; we'll slice this for the visible segment.
+  const SEG_SAMPLES = 80;
+  const sampled = curve.getPoints(SEG_SAMPLES);
+
+  // Pre-allocate a max-size position buffer for setDrawRange.
+  const maxVerts = SEG_SAMPLES + 3;
+  const positions = new Float32Array(maxVerts * 3);
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  geo.setDrawRange(0, 0);
+  const mat = new THREE.LineBasicMaterial({ color, transparent: true, opacity: 0.7 });
+  const line = new THREE.Line(geo, mat);
+  // Bounding sphere is computed from the full preallocated buffer (including
+  // zero-init slots past drawRange), which can place the sphere wrong and
+  // cause frustum culling to drop the line in some camera angles.
+  line.frustumCulled = false;
+  routeGroup.add(line);
+
+  // Constant world-speed so long/short arcs take time proportional to length.
+  const curveLen = curve.getLength();
+  const ARC_UNITS_PER_SEC = 0.90;
+  const jitter = 0.85 + Math.random() * 0.30;
+  const baseSpeed = (ARC_UNITS_PER_SEC * jitter) / Math.max(curveLen, 0.001);
+
+  // SLA multiplier (real-time corridors animate faster).
+  const country = VData?.countries?.[CITY_TO_COUNTRY?.[to.name]];
+  const slaMult = (country && isRealtimeCountry?.(country)) ? 2.0 : 1.0;
+
+  const payment = {
+    line,
+    via: from.id,
+    curve,
+    curveLen,
+    sampled,
+    segSamples: SEG_SAMPLES,
+    speed: baseSpeed * slaMult,
+    // phaseT 0→1 = head outbound (tail anchored at hub).
+    // phaseT 1→2 = tail catches up (head anchored at destination).
+    phaseT: 0,
+    headArrived: false,
+    dest: to,
+    hubColor: color,
+  };
+  payments.push(payment);
+  return payment;
+}
+
+// Active in-flight payments; updated each frame and culled when done.
+const payments = [];
+
+// Fill a payment line's position buffer with the [a,b] slice of its curve.
+// Shared by phase-1 (growing segment) and phase-2 (full path during fade).
+function writeArcSegment(ln, p, a, b) {
+  const samples = p.sampled;
+  const N = p.segSamples;
+  const posAttr = ln.geometry.attributes.position;
+  const arr = posAttr.array;
+  let w = 0;
+
+  const pStart = p.curve.getPoint(a);
+  arr[w++] = pStart.x; arr[w++] = pStart.y; arr[w++] = pStart.z;
+
+  const iStart = Math.ceil(a * N) + (a * N === Math.ceil(a * N) ? 1 : 0);
+  const iEnd = Math.floor(b * N) - (b * N === Math.floor(b * N) ? 1 : 0);
+  for (let k = iStart; k <= iEnd; k++) {
+    if (k < 0 || k > N) continue;
+    const sp = samples[k];
+    arr[w++] = sp.x; arr[w++] = sp.y; arr[w++] = sp.z;
+  }
+
+  const pEnd = p.curve.getPoint(b);
+  arr[w++] = pEnd.x; arr[w++] = pEnd.y; arr[w++] = pEnd.z;
+
+  posAttr.needsUpdate = true;
+  ln.geometry.setDrawRange(0, w / 3);
+  ln.geometry.computeBoundingSphere();
+}
+
+// ---------- LOCAL RAILS ----------
+// When a traveler reaches its destination, spawn a small cluster of short
+// arcs radiating across local territory to suggest in-country payment rails.
+// Subtle, secondary palette (light orange / pastel purple).
+const localGroup = new THREE.Group();
+globe.add(localGroup);
+const localBursts = []; // {lines:[{line, len, born}], born, life}
+
+function spawnLocalRails(dest, viaId) {
+  const center = latLonToVec3(dest.lat, dest.lon, RADIUS);
+  const count = 1; // single local rail per delivery
+  const baseColor = viaId === 'uk' ? 0x831FBF : 0xF15B40; // purple / warm orange
+  const burst = { lines: [], born: performance.now(), life: 1800, viaId };
+
+  for (let i = 0; i < count; i++) {
+    // Try up to 12 candidate endpoints; only keep ones that fall on land so
+    // local rails don't reach into oceans / off-island.
+    let endLat = dest.lat, endLon = dest.lon, found = false;
+    for (let attempt = 0; attempt < 12; attempt++) {
+      const angle = Math.random() * Math.PI * 2;
+      // Shrink reach with each failed attempt so islands still get a few rails
+      const reach = (0.5 + Math.random() * 2.2) * (1 - attempt * 0.06);
+      const dLat = Math.sin(angle) * reach;
+      const dLon = Math.cos(angle) * reach / Math.max(Math.cos(dest.lat * Math.PI/180), 0.25);
+      const cLat = THREE.MathUtils.clamp(dest.lat + dLat, -85, 85);
+      const cLon = dest.lon + dLon;
+      // Also sample the midpoint — ensures the arc itself stays over land
+      const midLat = (dest.lat + cLat) / 2;
+      const midLon = (dest.lon + cLon) / 2;
+      if (isLand(cLat, cLon) && isLand(midLat, midLon)) {
+        endLat = cLat; endLon = cLon; found = true; break;
+      }
+    }
+    if (!found) continue; // skip this rail rather than draw into the ocean
+    const v2 = latLonToVec3(endLat, endLon, RADIUS);
+
+    // Low, hugging arc — barely lifted above the surface
+    const mid = center.clone().add(v2).multiplyScalar(0.5).normalize().multiplyScalar(RADIUS + 0.04);
+    const curve = new THREE.QuadraticBezierCurve3(center.clone().multiplyScalar(RADIUS / center.length() * 1.002), mid, v2.clone().multiplyScalar(RADIUS / v2.length() * 1.002));
+    const pts = curve.getPoints(24);
+    const geo = new THREE.BufferGeometry().setFromPoints(pts);
+    const mat = new THREE.LineBasicMaterial({ color: baseColor, transparent: true, opacity: 0 });
+    const line = new THREE.Line(geo, mat);
+    line.userData = { viaId };
+    localGroup.add(line);
+
+    // Tiny end-dot (the "delivered" pin)
+    const dotGeo = new THREE.SphereGeometry(0.012, 8, 8);
+    const dotMat = new THREE.MeshBasicMaterial({ color: baseColor, transparent: true, opacity: 0 });
+    const dot = new THREE.Mesh(dotGeo, dotMat);
+    dot.position.copy(v2);
+    dot.userData = { viaId };
+    localGroup.add(dot);
+
+    burst.lines.push({ line, dot, delay: i * 90 });
+  }
+  localBursts.push(burst);
+
+  // Cap pool to avoid runaway memory
+  if (localBursts.length > 60) {
+    const old = localBursts.shift();
+    old.lines.forEach(({ line, dot }) => {
+      localGroup.remove(line); line.geometry.dispose(); line.material.dispose();
+      localGroup.remove(dot);  dot.geometry.dispose();  dot.material.dispose();
+    });
+  }
+}
+
+function updateLocalBursts(now) {
+  for (let bi = localBursts.length - 1; bi >= 0; bi--) {
+    const b = localBursts[bi];
+    const visible = (activeEntity === 'all' || activeEntity === b.viaId);
+    let allDead = true;
+    b.lines.forEach(({ line, dot, delay }) => {
+      const age = now - b.born - delay;
+      if (age < 0) { line.material.opacity = 0; dot.material.opacity = 0; allDead = false; return; }
+      const k = age / b.life;
+      if (k < 1) allDead = false;
+      // Fade in then out, peak around k=0.35
+      const env = k < 0.35 ? (k / 0.35) : Math.max(0, 1 - (k - 0.35) / 0.65);
+      const op = visible ? env * 0.75 : 0;
+      line.material.opacity = op;
+      dot.material.opacity  = visible ? env * 0.95 : 0;
+    });
+    if (allDead) {
+      b.lines.forEach(({ line, dot }) => {
+        localGroup.remove(line); line.geometry.dispose(); line.material.dispose();
+        localGroup.remove(dot);  dot.geometry.dispose();  dot.material.dispose();
+      });
+      localBursts.splice(bi, 1);
+    }
+  }
+}
+
+// ---------- TRAFFIC GENERATOR ----------
+// Each hub fires payments at PAYMENTS_PER_SEC. Destinations are picked by
+// region weight:
+//   UK hub  → 50% US cities, 30% Europe, 20% rest
+//   US hub  → 80% US cities, 20% rest of supported destinations
+const PAYMENTS_PER_SEC = 10;
+const HUB_WEIGHTS = {
+  uk: { eu: 0.50, us: 0.30, rest: 0.20 },
+  us: { us: 0.80, rest: 0.20 }, // 'eu' implicitly 0
+};
+const HUB_COLOR = { uk: 0xB029FF, us: 0xF15B40 };
+
+// Pre-bucket destinations per (hub, region), respecting each city's `via`.
+// UK hub serves destinations with via 'uk' or 'both'; US hub serves
+// destinations with via 'us' or 'both'. This mirrors the real supported
+// destination lists for each hub — no city fires from a hub that doesn't
+// actually serve it.
+const DEST_BUCKETS = {
+  uk: { us: [], eu: [], rest: [] },
+  us: { us: [], rest: [] },
+};
+DESTS.forEach(d => {
+  const ukOK = (d.via === 'uk' || d.via === 'both');
+  const usOK = (d.via === 'us' || d.via === 'both');
+  if (ukOK && DEST_BUCKETS.uk[d.region]) DEST_BUCKETS.uk[d.region].push(d);
+  if (usOK) {
+    if (d.region === 'us') DEST_BUCKETS.us.us.push(d);
+    else DEST_BUCKETS.us.rest.push(d);
+  }
+});
+
+function pickRegion(hubId) {
+  const w = HUB_WEIGHTS[hubId];
+  const r = Math.random();
+  let acc = 0;
+  for (const region in w) {
+    acc += w[region];
+    if (r < acc) return region;
+  }
+  // Fallback (rounding): return last key
+  return Object.keys(w).pop();
+}
+function pickDestination(hubId) {
+  const region = pickRegion(hubId);
+  const bucket = DEST_BUCKETS[hubId]?.[region];
+  if (!bucket || bucket.length === 0) {
+    // Bucket empty (shouldn't happen) — fall back to any reachable dest.
+    const all = Object.values(DEST_BUCKETS[hubId]).flat();
+    return all[Math.floor(Math.random() * all.length)];
+  }
+  return bucket[Math.floor(Math.random() * bucket.length)];
+}
+
+function firePayment(hubId) {
+  const hub = HUBS.find(h => h.id === hubId);
+  const dest = pickDestination(hubId);
+  if (!hub || !dest) return;
+  spawnPayment(hub, dest, HUB_COLOR[hubId]);
+}
+
+// ---------- COUNTRY-FOCUSED PAYMENTS ----------
+// While a country card is open, fire one extra payment per second targeting
+// a random city in that country. Picks a hub that actually serves it.
+let activeCountry = null;
+let countryPaymentTimer = null;
+function fireCountryPayment() {
+  if (!activeCountry) return;
+  const cities = DESTS.filter(d => d.country === activeCountry.name);
+  if (!cities.length) return;
+  const city = cities[Math.floor(Math.random() * cities.length)];
+  // Pick hub: prefer one of the hubs that actually serves this country.
+  const hubsServing = new Set();
+  (activeCountry.paymentMethods || []).forEach(pm =>
+    (pm.hubs || []).forEach(h => hubsServing.add(h)));
+  // Fall back to the city's own `via` field if country data is unavailable.
+  let hubId;
+  if (hubsServing.size === 0) {
+    hubId = city.via === 'us' ? 'us' : 'uk';
+  } else if (hubsServing.size === 1) {
+    hubId = [...hubsServing][0];
+  } else {
+    // Both hubs serve it — pick one at random per spawn.
+    hubId = Math.random() < 0.5 ? 'uk' : 'us';
+  }
+  const hub = HUBS.find(h => h.id === hubId);
+  if (!hub) return;
+  spawnPayment(hub, city, HUB_COLOR[hubId]);
+}
+function startCountryPayments(country) {
+  activeCountry = country;
+  if (countryPaymentTimer) clearInterval(countryPaymentTimer);
+  // Fire one immediately so the user sees instant feedback, then 1/sec.
+  fireCountryPayment();
+  countryPaymentTimer = setInterval(fireCountryPayment, 1000);
+}
+function stopCountryPayments() {
+  activeCountry = null;
+  if (countryPaymentTimer) { clearInterval(countryPaymentTimer); countryPaymentTimer = null; }
+}
+
+// Drive the spawn rate from rAF so it pauses when the tab is hidden.
+let lastSpawn = performance.now();
+function spawnTick(now) {
+  // Clamp dt to avoid a huge burst when the tab regains focus after being
+  // hidden for minutes — rAF pauses while hidden, so `now - lastSpawn` can
+  // jump arbitrarily far. Without this clamp, the next frame would try to
+  // spawn `dt * PAYMENTS_PER_SEC` bullets (thousands) and freeze the page.
+  const dt = Math.min((now - lastSpawn) / 1000, 0.1);
+  // Expected spawns this frame per hub
+  const expected = dt * PAYMENTS_PER_SEC;
+  // Use Math.random() for fractional rates so we average exactly 10/s.
+  ['uk', 'us'].forEach(hubId => {
+    let n = Math.floor(expected);
+    if (Math.random() < (expected - n)) n++;
+    for (let i = 0; i < n; i++) firePayment(hubId);
+  });
+  lastSpawn = now;
+  requestAnimationFrame(spawnTick);
+}
+requestAnimationFrame(spawnTick);
+
+// Pause the per-second timers while the tab is hidden — without this, the
+// country-payment interval and ticker keep firing in the background, queuing
+// work (and Three.js meshes) that all blasts through on the next frame when
+// the tab regains focus. We also reset `lastSpawn` so the spawn-tick clamp
+// above starts cleanly from the moment of return.
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) {
+    if (countryPaymentTimer) { clearInterval(countryPaymentTimer); countryPaymentTimer = null; }
+    if (window.__tickerInterval) { clearInterval(window.__tickerInterval); window.__tickerInterval = null; }
+  } else {
+    // Resume country-payment loop only if a country is still active.
+    if (activeCountry && !countryPaymentTimer) {
+      countryPaymentTimer = setInterval(fireCountryPayment, 1000);
+    }
+    // Resume ticker.
+    if (!window.__tickerInterval) {
+      window.__tickerInterval = setInterval(tickTicker, 2400);
+    }
+    lastSpawn = performance.now();
+  }
+});
+
+// ---------- INTERACTION ----------
+let isDragging = false;
+// Initial framing: lock the globe so both hubs are visible at once.
+// London is at lon≈0, New York at lon≈-74. Centering on the Atlantic
+// (≈37°W) puts both hubs comfortably in view on the front face.
+// Using the same formula spinTo() uses: rotation.y = -π/2 - (lon·π/180)
+// Initial framing: locked so both hubs frame symmetrically on the front face.
+// rotation.y = -0.9 rad centers ~35°W (mid-Atlantic) so London sits to the
+// right and New York to the left of center, both clearly visible.
+globe.rotation.y = -0.9;
+// Expose for tooling / debugging
+window.__globe = globe;
+window.__globeTilt = globeTilt;
+window.__payments = payments;
+window.__HUBS = HUBS;
+
+let prev = { x: 0, y: 0 };
+let velocity = { x: 0, y: 0 };
+// 0.25 deg/sec ambient rotation, applied per-frame in tick() with delta time.
+const AUTO_ROTATE_DEG_PER_SEC = 0.25;
+let userInteracting2 = false; // (kept for clarity below)
+let autoRotateSpeed = 0; // legacy per-frame value; ambient rotation handled in tick()
+let userInteracting = false;
+let userTimeout;
+
+function onPointerDown(e) {
+  isDragging = true;
+  userInteracting = true;
+  prev.x = e.clientX ?? e.touches?.[0]?.clientX ?? 0;
+  prev.y = e.clientY ?? e.touches?.[0]?.clientY ?? 0;
+  clearTimeout(userTimeout);
+}
+function onPointerMove(e) {
+  const cx = e.clientX ?? e.touches?.[0]?.clientX ?? 0;
+  const cy = e.clientY ?? e.touches?.[0]?.clientY ?? 0;
+  if (isDragging) {
+    const dx = (cx - prev.x) * 0.005;
+    const dy = (cy - prev.y) * 0.005;
+    // Horizontal drag spins around true vertical axis (pole stays up)
+    globe.rotation.y += dx;
+    // Vertical drag adjusts the viewing tilt only — never tilts the pole
+    globeTilt.rotation.x = THREE.MathUtils.clamp(globeTilt.rotation.x + dy, -0.6, 0.9);
+    velocity.x = dx;
+    velocity.y = dy;
+    prev.x = cx; prev.y = cy;
+  }
+  // Lat/lon readout from pointer relative to globe rotation (rough)
+  // Project a screen point near the cursor onto the sphere for a real readout
+  const rect = canvas.getBoundingClientRect();
+  const mx = ((cx - rect.left) / rect.width) * 2 - 1;
+  const my = -((cy - rect.top) / rect.height) * 2 + 1;
+  raycaster.setFromCamera({ x: mx, y: my }, camera);
+  const hit = raycaster.intersectObject(sphere)[0];
+  if (hit) {
+    // Lat/lon debug readouts removed — keep raycast for hover effects elsewhere.
+  }
+}
+function onPointerUp() {
+  isDragging = false;
+  clearTimeout(userTimeout);
+  userTimeout = setTimeout(() => { userInteracting = false; velocity.x *= 0.5; }, 2200);
+}
+
+canvas.addEventListener('mousedown', onPointerDown);
+window.addEventListener('mousemove', onPointerMove);
+window.addEventListener('mouseup', onPointerUp);
+canvas.addEventListener('touchstart', onPointerDown, { passive: true });
+canvas.addEventListener('touchmove', onPointerMove, { passive: true });
+canvas.addEventListener('touchend', onPointerUp);
+
+// Hub tooltip via raycaster
+const raycaster = new THREE.Raycaster();
+raycaster.params.Line = { threshold: 0.05 };
+let hoveredCountryName = null;
+let modalOpenedByHover = false;
+let modalOpenedByClick = false;
+const tooltip = document.getElementById('hub-tooltip');
+const tTag = document.getElementById('t-tag');
+const tName = document.getElementById('t-name');
+const tMeta = document.getElementById('t-meta');
+
+canvas.addEventListener('click', (e) => {
+  const rect = canvas.getBoundingClientRect();
+  const mx = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+  const my = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+  raycaster.setFromCamera({ x: mx, y: my }, camera);
+  // Only country dots are clickable. City destination dots are decorative.
+  const hits = raycaster.intersectObjects(extraCountryMeshes, false);
+  if (hits.length) {
+    const c = hits[0].object.userData?.country;
+    if (c) openCountry(c, { fromClick: true });
+  }
+});
+
+canvas.addEventListener('mousemove', (e) => {
+  // Suppress hover effects while the user is dragging the globe.
+  if (isDragging) {
+    tooltip.classList.remove('show');
+    canvas.style.cursor = 'grabbing';
+    return;
+  }
+  const rect = canvas.getBoundingClientRect();
+  const mx = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+  const my = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+  raycaster.setFromCamera({ x: mx, y: my }, camera);
+  // Country dot: cursor feedback only — actual open happens on click.
+  const countryHits = raycaster.intersectObjects(extraCountryMeshes, false);
+  if (countryHits.length) {
+    canvas.style.cursor = 'pointer';
+    tooltip.classList.remove('show');
+    return;
+  }
+  const hits = raycaster.intersectObjects(hubMeshes, true);
+  if (hits.length) {
+    const grp = hits[0].object.parent || hits[0].object;
+    const hub = grp.userData?.hub || grp.parent?.userData?.hub;
+    if (hub) {
+      tooltip.classList.add('show');
+      tooltip.classList.remove('uk', 'us');
+      tooltip.classList.add(hub.id);
+      // Tooltip is position:fixed, so use raw viewport coords.
+      tooltip.style.left = e.clientX + 'px';
+      tooltip.style.top = e.clientY + 'px';
+      tTag.textContent = hub.id === 'uk' ? 'UK · FCA REGULATED HUB' : 'US · NYDFS REGULATED HUB';
+      tTag.className = 'tooltip-tag ' + hub.id;
+      tName.textContent = hub.entity;
+      // Build the currencies list as a 4-column grid of code cells. The CSS
+      // draws a "·" separator between columns automatically; no leading or
+      // trailing dots ever appear.
+      const codes = Array.isArray(hub.currencies) ? hub.currencies : [hub.currencies];
+      const ccyHtml = codes.map(code => `<span class="ccy">${code}</span>`).join('');
+      tMeta.innerHTML = `
+        <span>City</span><b>${hub.city}</b>
+        <span>Regulator</span><b>${hub.regulator}</b>
+        <span>Funding currencies</span><b class="ccy-list">${ccyHtml}</b>
+      `;
+      canvas.style.cursor = 'pointer';
+      return;
+    }
+  }
+  tooltip.classList.remove('show');
+  canvas.style.cursor = isDragging ? 'grabbing' : 'grab';
+});
+
+canvas.addEventListener('mouseleave', () => {
+  tooltip.classList.remove('show');
+});
+
+// ---------- ENTITY FILTER ----------
+let activeEntity = 'all';
+const buttons = document.querySelectorAll('.entity-toggle button');
+buttons.forEach(btn => btn.addEventListener('click', () => {
+  buttons.forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  activeEntity = btn.dataset.entity;
+  document.getElementById('view-mode').textContent =
+    activeEntity === 'all' ? 'ALL HUBS' : (activeEntity === 'uk' ? 'UK HUB' : 'US HUB');
+
+  // Update entity meta line
+  const meta = document.getElementById('entity-meta');
+  if (activeEntity === 'uk') {
+    meta.innerHTML = '<b>Vitesse PSP Ltd</b> · Authorised by the FCA (UK) and DNB (EU) · Headquartered London';
+  } else if (activeEntity === 'us') {
+    meta.innerHTML = '<b>Vitesse Trust Company, LLC</b> · Approved by the New York State Department of Financial Services · New York';
+  } else {
+    meta.innerHTML = '<b>Vitesse PSP Ltd</b> · FCA, UK · London &nbsp;//&nbsp; <b>Vitesse Trust Company, LLC</b> · NYDFS · New York';
+  }
+
+  // Note: we no longer auto-spin to the active hub. The globe stays locked
+  // on the Atlantic view that frames both hubs. The user can still drag.
+}));
+
+function spinTo(lat, lon) {
+  // Bring (lat, lon) to face the camera (camera looks down -Z toward origin).
+  // With latLonToVec3 = (sinφcosθ, cosφ, -sinφsinθ), the point at lon=0 sits on
+  // +X. To rotate that longitude to +Z (toward viewer) we need rotation.y = -π/2 + (-θ).
+  const targetY = -Math.PI / 2 - (lon * Math.PI / 180);
+  const targetTilt = THREE.MathUtils.clamp(lat * Math.PI / 180, -0.6, 0.9);
+  animateView(targetY, targetTilt, 1100);
+}
+
+// Initial framing constants \u2014 must mirror the values set at scene setup.
+const INITIAL_ROT_Y = -0.9;
+const INITIAL_TILT_X = BASE_TILT_X;
+function resetView() {
+  animateView(INITIAL_ROT_Y, INITIAL_TILT_X, 900);
+}
+
+function animateView(targetY, targetTilt, dur) {
+  const startY = globe.rotation.y;
+  const dy = ((targetY - startY + Math.PI) % (Math.PI * 2)) - Math.PI;
+  const startTilt = globeTilt.rotation.x;
+  const dTilt = targetTilt - startTilt;
+  const t0 = performance.now();
+  function step(now) {
+    const t = Math.min((now - t0) / dur, 1);
+    const e = 1 - Math.pow(1 - t, 3);
+    globe.rotation.y = startY + dy * e;
+    globeTilt.rotation.x = startTilt + dTilt * e;
+    if (t < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+// ---------- LIVE TICKER ----------
+const tickerLine = document.getElementById('ticker-line');
+const TICKER_PAIRS = [
+  { from: 'London',  to: 'Sydney',     amt: 42180,  fx: 'GBP→AUD', via: 'uk' },
+  { from: 'London',  to: 'Mumbai',     amt: 18650,  fx: 'GBP→INR', via: 'uk' },
+  { from: 'London',  to: 'Frankfurt',  amt: 87420,  fx: 'GBP→EUR', via: 'uk' },
+  { from: 'London',  to: 'Lagos',      amt: 12940,  fx: 'GBP→NGN', via: 'uk' },
+  { from: 'London',  to: 'Singapore',  amt: 64300,  fx: 'GBP→SGD', via: 'uk' },
+  { from: 'London',  to: 'Tokyo',      amt: 51400,  fx: 'GBP→JPY', via: 'uk' },
+  { from: 'New York',to: 'Los Angeles',amt: 28400,  fx: 'USD',     via: 'us' },
+  { from: 'New York',to: 'Toronto',    amt: 16720,  fx: 'USD→CAD', via: 'us' },
+  { from: 'New York',to: 'São Paulo',  amt: 41080,  fx: 'USD→BRL', via: 'us' },
+  { from: 'New York',to: 'Mexico City',amt: 22300,  fx: 'USD→MXN', via: 'us' },
+  { from: 'New York',to: 'Miami',      amt: 9540,   fx: 'USD',     via: 'us' },
+];
+let tickerIdx = 0;
+function tickTicker() {
+  let pool = TICKER_PAIRS;
+  if (activeEntity !== 'all') pool = TICKER_PAIRS.filter(p => p.via === activeEntity);
+  const p = pool[tickerIdx % pool.length]; tickerIdx++;
+  const sym = p.fx.startsWith('GBP') ? '£' : '$';
+  tickerLine.style.opacity = 0;
+  setTimeout(() => {
+    tickerLine.innerHTML = `${p.from} <span class="arrow">→</span> ${p.to}<br/><span class="amt">${sym}${p.amt.toLocaleString('en-GB',{minimumFractionDigits:2})}</span> · ${p.fx}`;
+    tickerLine.style.opacity = 1;
+  }, 180);
+}
+tickerLine.style.transition = 'opacity .3s ease';
+window.__tickerInterval = setInterval(tickTicker, 2400);
+
+// ---------- ANIMATION LOOP ----------
+// Country triangle meshes (declared early so tick() can iterate them
+// before the makeCountryDot definition further down).
+const extraCountryMeshes = [];
+const clock = new THREE.Clock();
+function tick() {
+  const dt = Math.min(clock.getDelta(), 0.05);
+  const t = clock.elapsedTime;
+
+  if (!userInteracting) globe.rotation.y += autoRotateSpeed;
+  // Ambient slow rotation: 0.25 deg/sec, frame-rate independent. Pauses
+  // while the user is dragging or interacting so it doesn't fight input.
+  if (!userInteracting && !isDragging) {
+    globe.rotation.y += (AUTO_ROTATE_DEG_PER_SEC * Math.PI / 180) * dt;
+  }
+  // Inertia after drag
+  if (!isDragging && Math.abs(velocity.x) > 0.0001) {
+    globe.rotation.y += velocity.x;
+    velocity.x *= 0.94;
+  }
+
+  // Hub pulses
+  hubMeshes.forEach((g, i) => {
+    const p = g.userData.pulse;
+    if (!p) return;
+    const phase = (t * 0.9 + i * 0.35) % 1;
+    p.scale.setScalar(1 + phase * 2.4);
+    p.material.opacity = 0.55 * (1 - phase);
+  });
+
+  // Animated payments: each line sweeps once from hub→dest, then is disposed.
+  // Iterate backward so we can splice culled payments without skipping.
+  for (let i = payments.length - 1; i >= 0; i--) {
+    const p = payments[i];
+    const ln = p.line;
+    const prevPhase = p.phaseT;
+    p.phaseT += dt * p.speed;
+    // Phase 1 (outbound): phaseT in [0,1] → head at phaseT, tail anchored at hub (t=0).
+    // Phase 2 (catch-up): phaseT in [1,2] → head at 1, tail at (phaseT-1).
+    const cycleEnd = 2;
+
+    // Head-arrival event: phaseT just crossed 1.
+    if (prevPhase < 1 && p.phaseT >= 1 && !p.headArrived) {
+      p.headArrived = true;
+      const dotMesh = destByName.get(p.dest.name);
+      if (dotMesh) {
+        dotMesh.userData.arrivals.push(p);
+        // Recolor the destination bullet to match the hub that just landed
+        // a payment here, so it always reads as the same color as its hub.
+        if (p.hubColor != null) dotMesh.material.color.setHex(p.hubColor);
+      }
+      // Post-landing fade duration: SHORT arcs linger longer, LONG arcs
+      // (which already had a long sweep) fade out quicker. Mapped from
+      // curve length: ~3.2s at len=0, ~0.4s at len≥4.
+      const fadeDur = THREE.MathUtils.clamp(3.2 - p.curveLen * 0.7, 0.4, 3.2);
+      p.speed = 1 / fadeDur;
+    }
+
+    // Cycle complete → dispose.
+    if (p.phaseT >= cycleEnd) {
+      if (p.headArrived) {
+        const dotMesh = destByName.get(p.dest.name);
+        if (dotMesh) {
+          const list = dotMesh.userData.arrivals;
+          const idx = list.indexOf(p);
+          if (idx >= 0) list.splice(idx, 1);
+        }
+      }
+      routeGroup.remove(ln);
+      ln.geometry.dispose();
+      ln.material.dispose();
+      payments.splice(i, 1);
+      continue;
+    }
+
+    const filterVisible = (activeEntity === 'all' || p.via === activeEntity);
+
+    if (!p.headArrived) {
+      // Phase 1: head leads, tail anchored at hub. Segment grows from 0 → phaseT.
+      const tHead = p.phaseT;
+      const a = 0;
+      const b = tHead;
+      const baseOp = activeEntity === 'all' ? 0.7 : 0.85;
+      const hasLength = b > a + 1e-4;
+      ln.visible = filterVisible && hasLength;
+      ln.material.opacity = baseOp;
+
+      if (!ln.visible) {
+        ln.geometry.setDrawRange(0, 0);
+        continue;
+      }
+      writeArcSegment(ln, p, a, b);
+    } else {
+      // Phase 2 (post-landing): full path stays drawn hub→destination,
+      // line + bullet fade out together over phaseT 1 → 2.
+      const fade = Math.max(0, 1 - (p.phaseT - 1)); // 1 → 0
+      const baseOp = activeEntity === 'all' ? 0.7 : 0.85;
+      ln.visible = filterVisible && fade > 0.01;
+      ln.material.opacity = baseOp * fade;
+
+      if (!ln.visible) {
+        ln.geometry.setDrawRange(0, 0);
+        continue;
+      }
+      writeArcSegment(ln, p, 0, 1);
+    }
+  }
+
+  // Local-rail bursts (in-country delivery animation)
+  updateLocalBursts(performance.now());
+
+  // Hub & dest visibility
+  hubMeshes.forEach(g => {
+    const id = g.userData.hub.id;
+    g.visible = activeEntity === 'all' || activeEntity === id;
+  });
+  destMeshes.forEach(m => {
+    const via = m.userData.dest.via;
+    const filterOk = activeEntity === 'all' || activeEntity === via || via === 'both';
+    const arrivals = m.userData.arrivals;
+    // Bullet fades out together with the line. Opacity = max remaining
+    // fade across all currently-landed payments at this destination.
+    let maxFade = 0;
+    for (let k = 0; k < arrivals.length; k++) {
+      const f = Math.max(0, 1 - (arrivals[k].phaseT - 1));
+      if (f > maxFade) maxFade = f;
+    }
+    m.visible = filterOk && maxFade > 0.01;
+    m.material.opacity = 0.95 * maxFade;
+  });
+
+  // Billboard the country triangles so they face the camera with apex up.
+  // Each frame we point the triangle's local +Z toward the camera in world
+  // space, then roll so its local +Y aligns with screen-up.
+  if (extraCountryMeshes.length) {
+    const camWorld = camera.getWorldPosition(_v3a);
+    const screenUp = camera.up; // world-space up (camera lookAt math)
+    for (let i = 0; i < extraCountryMeshes.length; i++) {
+      const m = extraCountryMeshes[i];
+      const meshWorld = m.getWorldPosition(_v3b);
+      // Forward = camWorld - meshWorld, normalized
+      const forward = _v3c.copy(camWorld).sub(meshWorld).normalize();
+      // Build orthonormal basis (right, up, forward) in WORLD space
+      const right = _v3d.copy(screenUp).cross(forward).normalize();
+      if (right.lengthSq() < 1e-6) right.set(1, 0, 0); // degenerate
+      const up = _v3e.copy(forward).cross(right).normalize();
+      // Compose world rotation matrix and pull into local space (parent is globe).
+      _mat.makeBasis(right, up, forward);
+      // Convert to a quaternion and remove the parent's world rotation so the
+      // resulting LOCAL rotation produces the desired WORLD rotation.
+      _quatA.setFromRotationMatrix(_mat);
+      m.parent.getWorldQuaternion(_quatB).invert();
+      m.quaternion.multiplyQuaternions(_quatB, _quatA);
+    }
+  }
+
+  renderer.render(scene, camera);
+  requestAnimationFrame(tick);
+}
+const _v3a = new THREE.Vector3();
+const _v3b = new THREE.Vector3();
+const _v3c = new THREE.Vector3();
+const _v3d = new THREE.Vector3();
+const _v3e = new THREE.Vector3();
+const _mat = new THREE.Matrix4();
+const _quatA = new THREE.Quaternion();
+const _quatB = new THREE.Quaternion();
+tick();
+
+// ---------- SEARCH & MODAL ----------
+// VitesseData is loaded asynchronously from coverage-data.json.
+// We hold a reference here and rebuild the search index once it resolves.
+let VData = window.VitesseData || { countries: {}, currencies: {}, schemes: {} };
+let SEARCH_INDEX = [];
+function rebuildSearchIndex() {
+  SEARCH_INDEX = [];
+  Object.values(VData.countries).forEach(c => {
+    SEARCH_INDEX.push({
+      kind: 'country', id: c.name, label: c.name,
+      sub: `${c.iso2} · ${c.iso3} · ${c.region}`,
+      tokens: [c.name, c.iso2, c.iso3, c.ccy, c.region, ...(c.alias||[])].filter(Boolean).map(s=>s.toLowerCase()),
+      data: c,
+    });
+  });
+}
+// City → country lookup so we can resolve each traveler's SLA bucket.
+// Auto-derived from DESTS (each entry has its own .country).
+const CITY_TO_COUNTRY = Object.fromEntries(DESTS.map(d => [d.name, d.country]));
+// Real-time scheme keywords — if any Domestic Bank Transfer scheme matches,
+// the corridor is treated as real-time and bullets travel 2× baseline.
+const REALTIME_SCHEME_KEYWORDS = [
+  'fednow','rtp','pix','fps','faster payments','sepa instant','target2',
+  'upi','imps','instapay','duitnow','paynow','fast','promptpay','prompt pay',
+  'bi-fast','straksbetalinger','swish','express elixir','giro instant',
+  'pesalink','m-pesa','payshap','ghipss','cemac instant','raast','uaefts',
+  'sarie','zahav','napas','paid','osko','payid'
+];
+function isRealtimeCountry(country) {
+  return (country.paymentMethods || []).some(pm => {
+    if (pm.type !== 'Domestic Bank Transfer') return false;
+    return (pm.schemes || []).some(s => {
+      const k = s.toLowerCase();
+      return REALTIME_SCHEME_KEYWORDS.some(rt => k.includes(rt));
+    });
+  });
+}
+function applyTravelerSpeeds() {
+  // No-op: speeds are now applied per-payment at spawn time using the SLA
+  // multiplier on the destination country.
+}
+// Make a small triangle marker for a country (no arc, no traveler).
+// Color reflects which hub(s) serve the country: UK=purple, US=orange, both=blended.
+// Rendered as a flat triangle that BILLBOARDS to the camera each frame so it
+// always reads as a clean triangle regardless of where the country sits on the
+// globe. The apex points "up" in screen space.
+const TRI_SIZE = 0.030;
+function makeTriangleGeometry(size) {
+  const h = size * Math.sqrt(3) / 2;
+  const g = new THREE.BufferGeometry();
+  const verts = new Float32Array([
+    0,        h * 2/3, 0,  // apex
+   -size/2, -h * 1/3, 0,   // bottom-left
+    size/2, -h * 1/3, 0,   // bottom-right
+  ]);
+  g.setAttribute('position', new THREE.BufferAttribute(verts, 3));
+  g.setIndex([0, 1, 2]);
+  g.computeVertexNormals();
+  return g;
+}
+const TRI_GEO = makeTriangleGeometry(TRI_SIZE);
+function makeCountryDot(country) {
+  const pos = latLonToVec3(country.lat, country.lon, RADIUS * 1.005);
+  const hubs = new Set();
+  (country.paymentMethods || []).forEach(pm => (pm.hubs || []).forEach(h => hubs.add(h)));
+  let color = 0xB029FF; // UK
+  if (hubs.has('us') && !hubs.has('uk')) color = 0xF15B40;
+  else if (hubs.has('us') && hubs.has('uk')) color = 0xD846A0; // blend
+  const mat = new THREE.MeshBasicMaterial({
+    color, transparent: true, opacity: 0.95, side: THREE.DoubleSide,
+  });
+  const m = new THREE.Mesh(TRI_GEO, mat);
+  m.position.copy(pos);
+  m.userData = { country, type: 'country-dot', billboard: true };
+  globe.add(m);
+  extraCountryMeshes.push(m);
+  return m;
+}
+function syncCountryDots() {
+  // Clear existing extras
+  extraCountryMeshes.forEach(m => { globe.remove(m); m.geometry.dispose(); m.material.dispose(); });
+  extraCountryMeshes.length = 0;
+  if (!VData.countries) return;
+  // Country dots are the persistent, clickable layer (one per supported country).
+  // City destination dots flash on payment arrival; they are non-interactive,
+  // so we deliberately do NOT dedupe against them.
+  Object.values(VData.countries).forEach(c => {
+    makeCountryDot(c);
+  });
+}
+
+function adoptVitesseData(d) {
+  if (!d || !d.countries) return;
+  VData = d;
+  rebuildSearchIndex();
+  applyTravelerSpeeds();
+  syncCountryDots();
+}
+// Adopt synchronously if data was already populated by the time we run.
+if (window.VitesseData && Object.keys(window.VitesseData.countries || {}).length) {
+  adoptVitesseData(window.VitesseData);
+}
+// Promise path
+if (window.VitesseDataReady && typeof window.VitesseDataReady.then === 'function') {
+  window.VitesseDataReady.then(adoptVitesseData).catch(()=>{});
+}
+// Event path (most reliable — fires from coverage-data.js when build completes)
+window.addEventListener('vitesse-data-ready', e => adoptVitesseData(e.detail));
+// Callback registry (covers the race where listener was added after dispatch)
+window.__vitesseDataCallbacks = window.__vitesseDataCallbacks || [];
+window.__vitesseDataCallbacks.push(adoptVitesseData);
+// Final safety net: poll briefly in case fetch was racy or blocked
+let __vitessePollTries = 0;
+const __vitessePoll = setInterval(() => {
+  if (VData.countries && Object.keys(VData.countries).length) { clearInterval(__vitessePoll); return; }
+  if (window.VitesseData && Object.keys(window.VitesseData.countries || {}).length) {
+    adoptVitesseData(window.VitesseData);
+    clearInterval(__vitessePoll);
+  }
+  if (++__vitessePollTries > 40) clearInterval(__vitessePoll); // ~4s max
+}, 100);
+// Build once now in case data is already there
+rebuildSearchIndex();
+const searchInput = document.getElementById('search-input');
+const searchShell = document.getElementById('search-shell');
+const suggestBox = document.getElementById('search-suggest');
+const modal = document.getElementById('modal');
+const modalBackdrop = document.getElementById('modal-backdrop');
+const modalTag = document.getElementById('modal-tag');
+const modalTitle = document.getElementById('modal-title');
+const modalSub = document.getElementById('modal-sub');
+const modalBody = document.getElementById('modal-body');
+const modalClose = document.getElementById('modal-close');
+
+function searchScore(item, q) {
+  const ql = q.toLowerCase();
+  let best = -1;
+  for (const t of item.tokens) {
+    if (t === ql) return 1000;
+    if (t.startsWith(ql)) best = Math.max(best, 800 - (t.length - ql.length));
+    else if (t.includes(ql)) best = Math.max(best, 500 - (t.indexOf(ql)) - (t.length - ql.length) * 0.5);
+  }
+  return best;
+}
+
+function highlightMatch(label, q) {
+  if (!q) return label;
+  const idx = label.toLowerCase().indexOf(q.toLowerCase());
+  if (idx < 0) return label;
+  return label.slice(0, idx) + '<mark>' + label.slice(idx, idx + q.length) + '</mark>' + label.slice(idx + q.length);
+}
+
+let activeSuggest = -1;
+let currentSuggestions = [];
+
+function runSearch(q) {
+  const query = q.trim();
+  if (!query) {
+    searchShell.classList.remove('has-results');
+    suggestBox.innerHTML = '';
+    currentSuggestions = [];
+    activeSuggest = -1;
+    return;
+  }
+  const scored = SEARCH_INDEX
+    .map(it => ({ it, score: searchScore(it, query) }))
+    .filter(x => x.score >= 0)
+    .sort((a,b) => b.score - a.score)
+    .slice(0, 12);
+
+  if (scored.length === 0) {
+    suggestBox.innerHTML = `
+      <div class="suggest-empty">No direct match — opening SWIFT correspondent view…</div>
+    `;
+    searchShell.classList.add('has-results');
+    currentSuggestions = [];
+    return;
+  }
+
+  // Group by kind (only countries are indexed now)
+  const byKind = { country: [] };
+  scored.forEach(s => { if (byKind[s.it.kind]) byKind[s.it.kind].push(s.it); });
+  const sections = [];
+  if (byKind.country.length)  sections.push(['Countries', byKind.country]);
+
+  let html = '';
+  let idx = 0;
+  currentSuggestions = [];
+  for (const [head, list] of sections) {
+    html += `<div class="suggest-section"><div class="suggest-head">${head}</div>`;
+    for (const it of list) {
+      html += `<div class="suggest-row" data-i="${idx}" data-kind="${it.kind}" data-id="${encodeURIComponent(it.id)}">
+        <span class="suggest-name">${highlightMatch(it.label, query)}</span>
+        <span class="suggest-meta">${it.sub}</span>
+      </div>`;
+      currentSuggestions.push(it);
+      idx++;
+    }
+    html += `</div>`;
+  }
+  suggestBox.innerHTML = html;
+  searchShell.classList.add('has-results');
+  activeSuggest = 0;
+  paintActiveSuggestion();
+}
+
+function paintActiveSuggestion() {
+  suggestBox.querySelectorAll('.suggest-row').forEach(r => r.classList.remove('active'));
+  const el = suggestBox.querySelector(`.suggest-row[data-i="${activeSuggest}"]`);
+  if (el) el.classList.add('active');
+}
+
+searchInput.addEventListener('input', e => runSearch(e.target.value));
+searchInput.addEventListener('focus', () => { if (searchInput.value) runSearch(searchInput.value); });
+searchInput.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowDown') { e.preventDefault(); activeSuggest = Math.min(activeSuggest+1, currentSuggestions.length-1); paintActiveSuggestion(); }
+  else if (e.key === 'ArrowUp') { e.preventDefault(); activeSuggest = Math.max(activeSuggest-1, 0); paintActiveSuggestion(); }
+  else if (e.key === 'Enter') {
+    e.preventDefault();
+    if (currentSuggestions.length && activeSuggest >= 0) {
+      pickSuggestion(currentSuggestions[activeSuggest]);
+    } else if (searchInput.value.trim()) {
+      // Open SWIFT fallback for unrecognised query
+      openFallback(searchInput.value.trim());
+    }
+  } else if (e.key === 'Escape') {
+    searchInput.blur();
+    searchShell.classList.remove('has-results');
+  }
+});
+
+suggestBox.addEventListener('click', (e) => {
+  const row = e.target.closest('.suggest-row');
+  if (!row) return;
+  const i = +row.dataset.i;
+  if (currentSuggestions[i]) pickSuggestion(currentSuggestions[i]);
+});
+
+document.addEventListener('click', (e) => {
+  if (!searchShell.contains(e.target)) searchShell.classList.remove('has-results');
+});
+
+// Global "/" shortcut
+document.addEventListener('keydown', (e) => {
+  if (e.key === '/' && document.activeElement !== searchInput && !modal.classList.contains('show')) {
+    e.preventDefault();
+    searchInput.focus();
+    searchInput.select();
+  }
+  if (e.key === 'Escape' && modal.classList.contains('show')) closeModal();
+});
+
+function pickSuggestion(it) {
+  searchShell.classList.remove('has-results');
+  searchInput.blur();
+  if (it.kind === 'country') openCountry(it.data);
+}
+
+// ---- modal helpers ----
+function showModal(opts = {}) {
+  modal.classList.add('show');
+  if (!opts.silent) modalBackdrop.classList.add('show');
+  modal.setAttribute('aria-hidden', 'false');
+}
+function closeModal() {
+  const wasHover = modalOpenedByHover;
+  const wasClick = modalOpenedByClick;
+  modal.classList.remove('show');
+  modalBackdrop.classList.remove('show');
+  modal.setAttribute('aria-hidden', 'true');
+  // Reset highlight ring
+  destMeshes.forEach(m => { m.userData.highlight = false; m.scale.setScalar(1); });
+  // Stop the country-focused payment burst.
+  stopCountryPayments();
+  // Only spin/tilt back if the user explicitly opened via SEARCH.
+  // Hover-opened or click-on-globe-opened cards leave the globe where it is.
+  if (!wasHover && !wasClick) resetView();
+  modalOpenedByHover = false;
+  modalOpenedByClick = false;
+  // Always clear the search input so the next interaction starts fresh.
+  searchInput.value = '';
+  searchShell.classList.remove('has-results');
+  suggestBox.innerHTML = '';
+  currentSuggestions = [];
+}
+modalClose.addEventListener('click', closeModal);
+modalBackdrop.addEventListener('click', closeModal);
+
+// ---- country view ----
+function methodChipHtml(pm) {
+  const type = pm.type;
+  if (type === 'Domestic Bank Transfer' && pm.schemes && pm.schemes.length) {
+    return `<span class="chip payout">${type} <span class="chip-sub">(${pm.schemes.join(', ')})</span></span>`;
+  }
+  return `<span class="chip payout">${type}</span>`;
+}
+
+// Map raw delivery codes to human copy shown on the country card.
+function deliveryLabel(code) {
+  if (!code) return '';
+  // SEPA composite codes ("Real Time / T+0") list multiple speed tiers — show
+  // only the fastest (the first segment) so the country card reflects the
+  // best-case delivery time rather than a confusing range.
+  if (/\//.test(code)) {
+    const fastest = code.split('/')[0].trim();
+    return deliveryLabel(fastest);
+  }
+  if (/^Real\s*Time$/i.test(code)) return '< 30 seconds';
+  if (/^T\+0$/i.test(code)) return 'Same day';
+  if (/^T\+1$/i.test(code)) return 'Next business day';
+  if (/^T\+2$/i.test(code)) return '< 2 business days';
+  return code;
+}
+
+function hubColumn(label, hubId, methods, deliveryCode) {
+  const cls = `hub-card ${hubId}${methods.length ? '' : ' dim'}`;
+  const delivery = methods.length ? deliveryLabel(deliveryCode) : '';
+  const titleRow = `<div class="hub-card-head">
+    <div class="hub-card-title">${label}</div>
+    ${delivery ? `<div class="hub-card-delivery">${delivery}</div>` : ''}
+  </div>`;
+  const body = methods.length
+    ? `<div class="chip-list">${methods.map(methodChipHtml).join('')}</div>`
+    : `<div class="hub-card-na">Not served from this hub</div>`;
+  return `<div class="${cls}">
+    ${titleRow}
+    <div style="margin-top:12px"></div>
+    ${body}
+  </div>`;
+}
+
+function openCountry(c, opts = {}) {
+  modalTag.textContent = 'DESTINATION COVERAGE';  modalTitle.innerHTML = `${c.name} <span class="iso">${c.ccy}</span>`;
+  modalSub.textContent = `Local currency · ${c.ccy} · ${c.region}`;
+  modalBody.innerHTML = `
+    <div class="hub-grid">
+      ${hubColumn('UK Hub', 'uk', c.ukMethods || [], (c.hubDelivery||{}).uk)}
+      ${hubColumn('US Hub', 'us', c.usMethods || [], (c.hubDelivery||{}).us)}
+    </div>
+  `;
+  // Capture pre-open state so we can decide hover vs explicit ownership.
+  const wasShowing = modal.classList.contains('show');
+  showModal(opts);
+  if (opts.silent) {
+    // Silent (hover) open: only claim hover-ownership if nothing else
+    // already opened the modal. Don't downgrade a click/search open.
+    if (!wasShowing) modalOpenedByHover = true;
+  } else {
+    // Explicit open. Track click-on-globe vs search separately so we know
+    // whether to return the globe to base on close (only do so on search).
+    modalOpenedByHover = false;
+    modalOpenedByClick = !!opts.fromClick;
+  }
+  if (!opts.silent) {
+    spinTo(c.lat, c.lon);
+    pulseDestinationAt(c.lat, c.lon);
+  }
+  // Boost activity to this country: 1 extra payment/sec while card is open.
+  startCountryPayments(c);
+}
+
+// ---- currency view ----
+
+function openCurrency(cc) {
+  modalTag.textContent = 'CURRENCY COVERAGE';
+  modalTitle.innerHTML = `${cc.code} <span class="iso">Currency</span>`;
+  modalSub.textContent = `${cc.countries.length} destination${cc.countries.length===1?'':'s'} payable in ${cc.code}`;
+  modalBody.innerHTML = `
+    <div class="hub-grid single">
+      <div class="hub-card uk">
+        <div class="hub-card-title">Destinations</div>
+        <div style="margin-top:12px"></div>
+        <div class="dest-list open" style="display:flex">
+          ${cc.countries.map(n => `<span data-country="${n}">${n}</span>`).join('')}
+        </div>
+      </div>
+    </div>
+  `;
+  modalBody.querySelector('.dest-list').addEventListener('click', (e) => {
+    const span = e.target.closest('span[data-country]');
+    if (!span) return;
+    const c = VData.countries[span.dataset.country];
+    if (c) openCountry(c);
+  });
+  showModal();
+  if (cc.countries.length) {
+    const first = VData.countries[cc.countries[0]];
+    if (first) { spinTo(first.lat, first.lon); pulseDestinationAt(first.lat, first.lon); }
+  }
+}
+
+// ---- scheme view (lightweight) ----
+function openScheme(s) {
+  modalTag.textContent = 'PAYMENT SCHEME';
+  modalTitle.innerHTML = s.name;
+  modalSub.textContent = `${s.countries.length} countr${s.countries.length===1?'y':'ies'} use this rail`;
+  modalBody.innerHTML = `
+    <div class="why-block">
+      <span class="label">Coverage</span>
+      ${s.name} is a local payment scheme available in the destinations below. Vitesse routes payments to the relevant country's hub and clears via this scheme where supported.
+    </div>
+    <div class="dest-list open" style="display:block;margin-top:18px">
+      ${s.countries.map(n => `<span data-country="${n}">${n}</span>`).join('')}
+    </div>
+  `;
+  modalBody.querySelector('.dest-list').addEventListener('click', (e) => {
+    const span = e.target.closest('span[data-country]');
+    if (!span) return;
+    const c = VData.countries[span.dataset.country];
+    if (c) openCountry(c);
+  });
+  showModal();
+}
+
+// ---- SWIFT fallback ----
+function openFallback(query) {
+  searchShell.classList.remove('has-results');
+  modalTag.textContent = 'NO DIRECT MATCH';
+  modalTitle.innerHTML = `${query}`;
+  modalSub.textContent = 'Routed via SWIFT correspondent';
+  modalBody.innerHTML = `
+    <div class="fallback-block">
+      <h4>Routed via SWIFT correspondent</h4>
+      <p>“${query}” is not on a Vitesse direct local rail. Payments to this destination are cleared via SWIFT through one of our regulated hubs — typically the UK Hub for cross-border SWIFT coverage. Speak to us for cut-off times and indicative SLAs.</p>
+    </div>
+  `;
+  showModal();
+}
+
+// ---- Pulse a destination on the globe ----
+// Briefly enlarges the marker nearest (lat,lon) and adds a halo ring.
+let pulseHalo = null;
+function pulseDestinationAt(lat, lon) {
+  // Find nearest destination marker; if none within tolerance, draw a transient marker
+  const target = latLonToVec3(lat, lon, RADIUS * 1.005);
+  let nearest = null, bestD = Infinity;
+  destMeshes.forEach(m => {
+    const d = m.position.distanceTo(target);
+    if (d < bestD) { bestD = d; nearest = m; }
+  });
+  // tolerance ~15° of arc (~0.5 units on R=2 sphere)
+  const useExisting = nearest && bestD < 0.5;
+
+  // Remove old halo
+  if (pulseHalo) {
+    globe.remove(pulseHalo); pulseHalo.geometry.dispose(); pulseHalo.material.dispose(); pulseHalo = null;
+  }
+  // New halo at the right spot
+  const haloGeo = new THREE.RingGeometry(0.02, 0.06, 32);
+  const haloMat = new THREE.MeshBasicMaterial({ color: 0xF15B40, side: THREE.DoubleSide, transparent: true, opacity: 0.9 });
+  const halo = new THREE.Mesh(haloGeo, haloMat);
+  const haloPos = useExisting ? nearest.position.clone() : target;
+  halo.position.copy(haloPos);
+  halo.lookAt(haloPos.clone().multiplyScalar(2));
+  halo.userData.born = performance.now();
+  halo.userData.life = 2400;
+  globe.add(halo);
+  pulseHalo = halo;
+
+  if (useExisting) {
+    // Bounce the marker briefly via a simple scale-tween
+    const m = nearest;
+    const t0 = performance.now();
+    function bounce(now) {
+      const t = (now - t0) / 700;
+      if (t > 1) { m.scale.setScalar(1); return; }
+      const k = Math.sin(t * Math.PI);
+      m.scale.setScalar(1 + k * 1.4);
+      requestAnimationFrame(bounce);
+    }
+    requestAnimationFrame(bounce);
+  }
+}
+
+// Hook into render loop: animate halo
+const _origTickerInterval = setInterval; // (no-op, just to keep linters happy)
+(function animateHalo(){
+  function step() {
+    if (pulseHalo) {
+      const age = performance.now() - pulseHalo.userData.born;
+      const k = age / pulseHalo.userData.life;
+      if (k >= 1) {
+        globe.remove(pulseHalo); pulseHalo.geometry.dispose(); pulseHalo.material.dispose(); pulseHalo = null;
+      } else {
+        pulseHalo.scale.setScalar(1 + k * 5);
+        pulseHalo.material.opacity = 0.9 * (1 - k);
+      }
+    }
+    requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+})();
+
+// ---------- RESIZE ----------
+function resize() {
+  const rect = canvas.getBoundingClientRect();
+  const w = rect.width, h = rect.height;
+  renderer.setSize(w, h, false);
+  camera.aspect = w / h;
+  camera.updateProjectionMatrix();
+}
+new ResizeObserver(resize).observe(canvas);
+resize();
+</script>
+</body>
+</html>
