@@ -379,6 +379,7 @@
             {
               "type": "Domestic Bank Transfer",
               "schemes": [
+                "EFT",
                 "PIX"
               ]
             }
@@ -464,8 +465,6 @@
             {
               "type": "Domestic Bank Transfer",
               "schemes": [
-                "EFT",
-                "Interac"
               ]
             },
             {
@@ -2145,7 +2144,6 @@
             {
               "type": "Domestic Bank Transfer",
               "schemes": [
-                "EFT"
               ]
             },
             {
@@ -2466,11 +2464,6 @@
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
-              "schemes": [
-                "FedNow",
-                "ACH",
-                "FedWire"
-              ]
             },
             {
               "type": "SWIFT Bank Transfer"
@@ -2586,6 +2579,7 @@
             {
               "type": "Domestic Bank Transfer",
               "schemes": [
+                "EFT",
                 "PIX"
               ]
             }
@@ -2604,8 +2598,6 @@
             {
               "type": "Domestic Bank Transfer",
               "schemes": [
-                "EFT",
-                "Interac"
               ]
             }
           ]
@@ -2882,8 +2874,9 @@
             {
               "type": "Domestic Bank Transfer",
               "schemes": [
-                "FedNow",
+                "RTP",
                 "ACH",
+                "FedNow",
                 "FedWire"
               ]
             },
