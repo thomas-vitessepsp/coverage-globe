@@ -28,11 +28,13 @@
       "lat": 51.5074,
       "lon": -0.1278,
       "fundingCurrencies": [
-        "USD",
         "GBP",
         "EUR",
+        "USD",
+        "AED",
         "AUD",
         "CAD",
+        "CHF",
         "CZK",
         "DKK",
         "HKD",
@@ -46,12 +48,10 @@
         "PLN",
         "RON",
         "SAR",
-        "SGD",
-        "ZAR",
         "SEK",
-        "CHF",
+        "SGD",
         "TRY",
-        "AED"
+        "ZAR"
       ],
       "supportedCountries": [
         {
