@@ -66,7 +66,8 @@
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
-              "schemes": []
+              "schemes": ["SEPA Instant",
+                "SEPA Credit Transfer"]
             },
             {
               "type": "SWIFT Bank Transfer"
@@ -389,13 +390,14 @@
           "iso3": "BGR",
           "lat": 42.7,
           "lon": 25.5,
-          "currency": "BGN",
+          "currency": "EUR",
           "region": "Europe",
           "delivery": "Real Time / T+0",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
-              "schemes": []
+              "schemes": ["SEPA Instant",
+                "SEPA Credit Transfer"]
             }
           ]
         },
