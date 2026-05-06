@@ -2464,6 +2464,7 @@
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
+              "schemes": []
             },
             {
               "type": "SWIFT Bank Transfer"
