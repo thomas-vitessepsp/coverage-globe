@@ -2552,9 +2552,6 @@
               "schemes": [
                 "SEPA Credit Transfer"
               ]
-            },
-            {
-              "type": "SWIFT Bank Transfer"
             }
           ]
         },
@@ -2589,9 +2586,6 @@
               "schemes": [
                 "SEPA Credit Transfer"
               ]
-            },
-            {
-              "type": "SWIFT Bank Transfer"
             }
           ]
         },
@@ -2610,9 +2604,6 @@
               "schemes": [
                 "SEPA Credit Transfer"
               ]
-            },
-            {
-              "type": "SWIFT Bank Transfer"
             }
           ]
         },
@@ -2746,9 +2737,6 @@
             {
               "type": "Domestic Bank Transfer",
               "schemes": []
-            },
-            {
-              "type": "SWIFT Bank Transfer"
             }
           ]
         },
@@ -2765,9 +2753,6 @@
             {
               "type": "Domestic Bank Transfer",
               "schemes": []
-            },
-            {
-              "type": "SWIFT Bank Transfer"
             }
           ]
         },
@@ -2800,9 +2785,6 @@
             {
               "type": "Domestic Bank Transfer",
               "schemes": []
-            },
-            {
-              "type": "SWIFT Bank Transfer"
             }
           ]
         },
@@ -2821,9 +2803,6 @@
               "schemes": [
                 "SEPA Credit Transfer"
               ]
-            },
-            {
-              "type": "SWIFT Bank Transfer"
             }
           ]
         },
@@ -2842,9 +2821,6 @@
               "schemes": [
                 "SEPA Credit Transfer"
               ]
-            },
-            {
-              "type": "SWIFT Bank Transfer"
             }
           ]
         },
@@ -2863,9 +2839,6 @@
               "schemes": [
                 "SEPA Credit Transfer"
               ]
-            },
-            {
-              "type": "SWIFT Bank Transfer"
             }
           ]
         },
@@ -2898,9 +2871,6 @@
             {
               "type": "Domestic Bank Transfer",
               "schemes": []
-            },
-            {
-              "type": "SWIFT Bank Transfer"
             }
           ]
         },
@@ -2983,9 +2953,6 @@
               "schemes": [
                 "SEPA Credit Transfer"
               ]
-            },
-            {
-              "type": "SWIFT Bank Transfer"
             }
           ]
         },
@@ -3020,9 +2987,6 @@
               "schemes": [
                 "SEPA Credit Transfer"
               ]
-            },
-            {
-              "type": "SWIFT Bank Transfer"
             }
           ]
         },
@@ -3055,9 +3019,6 @@
             {
               "type": "Domestic Bank Transfer",
               "schemes": []
-            },
-            {
-              "type": "SWIFT Bank Transfer"
             }
           ]
         },
@@ -3074,9 +3035,6 @@
             {
               "type": "Domestic Bank Transfer",
               "schemes": []
-            },
-            {
-              "type": "SWIFT Bank Transfer"
             }
           ]
         },
@@ -3093,9 +3051,6 @@
             {
               "type": "Domestic Bank Transfer",
               "schemes": []
-            },
-            {
-              "type": "SWIFT Bank Transfer"
             }
           ]
         },
@@ -3112,9 +3067,6 @@
             {
               "type": "Domestic Bank Transfer",
               "schemes": []
-            },
-            {
-              "type": "SWIFT Bank Transfer"
             }
           ]
         },
@@ -3147,9 +3099,6 @@
             {
               "type": "Domestic Bank Transfer",
               "schemes": []
-            },
-            {
-              "type": "SWIFT Bank Transfer"
             }
           ]
         },
@@ -3184,9 +3133,6 @@
               "schemes": [
                 "SEPA Credit Transfer"
               ]
-            },
-            {
-              "type": "SWIFT Bank Transfer"
             }
           ]
         },
@@ -3237,9 +3183,6 @@
               "schemes": [
                 "SEPA Credit Transfer"
               ]
-            },
-            {
-              "type": "SWIFT Bank Transfer"
             }
           ]
         },
@@ -3256,9 +3199,6 @@
             {
               "type": "Domestic Bank Transfer",
               "schemes": []
-            },
-            {
-              "type": "SWIFT Bank Transfer"
             }
           ]
         },
@@ -3275,9 +3215,6 @@
             {
               "type": "Domestic Bank Transfer",
               "schemes": []
-            },
-            {
-              "type": "SWIFT Bank Transfer"
             }
           ]
         },
@@ -3294,9 +3231,6 @@
             {
               "type": "Domestic Bank Transfer",
               "schemes": []
-            },
-            {
-              "type": "SWIFT Bank Transfer"
             }
           ]
         },
@@ -3315,9 +3249,6 @@
               "schemes": [
                 "SEPA Credit Transfer"
               ]
-            },
-            {
-              "type": "SWIFT Bank Transfer"
             }
           ]
         },
