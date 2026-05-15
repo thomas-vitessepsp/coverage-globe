@@ -1,7 +1,7 @@
 {
   "$schema": {
     "_comment": "Payment options grouped by Vitesse hub. Single source of truth for the globe UI.",
-    "structure": "Top-level `hubs` array. Each hub: identity (id, name, entity, regulator, city, lat, lon), `fundingCurrencies` (the currencies the hub can be funded in), and `supportedCountries` — destinations served by that hub. Each destination lists `paymentMethods` (Domestic Bank Transfer | SWIFT Bank Transfer | Check) with `schemes` populated only for Domestic Bank Transfer, and a `delivery` field (Real Time / Real Time / T+0 / T+0 / T+1 / T+2).",
+    "structure": "Top-level `hubs` array. Each hub: identity (id, name, entity, regulator, city, lat, lon), `fundingCurrencies` (the currencies the hub can be funded in), and `supportedCountries` — destinations served by that hub. Each destination lists `paymentMethods` (Domestic Bank Transfer | SWIFT Bank Transfer | Check) with `schemes` populated only for Domestic Bank Transfer, and a `delivery` field (Real Time / Real Time / T+1 / T+2).",
     "hubs": "'uk' = Vitesse PSP Ltd (FCA/DNB) · 'us' = Vitesse Trust Company (NYDFS).",
     "source": "Derived from Vitesse Knowledge Hub: Payments (US Hub) and Payments (UK Hub). Region rows expanded per footnotes (SEPA, CEMAC/Central Africa, WAEMU/West Africa, UK Crown Dependencies)."
   },
@@ -62,7 +62,7 @@
           "lon": 20,
           "currency": "EUR",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "Real Time",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -164,7 +164,7 @@
           "lon": 14.6,
           "currency": "EUR",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "Real Time",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -261,7 +261,7 @@
           "lon": 4.5,
           "currency": "EUR",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "Real Time",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -395,7 +395,7 @@
           "lon": 25.5,
           "currency": "EUR",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "Real Time",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -623,7 +623,7 @@
           "lon": 15.2,
           "currency": "EUR",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "Real Time",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -642,7 +642,7 @@
           "lon": 33.4,
           "currency": "EUR",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "Real Time",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -661,7 +661,7 @@
           "lon": 15.5,
           "currency": "CZK",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "Real Time",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -799,7 +799,7 @@
           "lon": 25,
           "currency": "EUR",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "Real Time",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -863,7 +863,7 @@
           "lon": 25.7,
           "currency": "EUR",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "Real Time",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -885,7 +885,7 @@
           "lon": 2.2,
           "currency": "EUR",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "Real Time",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -938,7 +938,7 @@
           "lon": 10.4,
           "currency": "EUR",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "Real Time",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -979,7 +979,7 @@
           "lon": -5.4,
           "currency": "GIP",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "Real Time",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -995,7 +995,7 @@
           "lon": 21.8,
           "currency": "EUR",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "Real Time",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -1030,7 +1030,7 @@
           "lon": -2.6,
           "currency": "GBP",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "Real Time",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -1133,7 +1133,7 @@
           "lon": -19,
           "currency": "ISK",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "Real Time",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -1187,7 +1187,7 @@
           "lon": -8.2,
           "currency": "EUR",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "Real Time",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -1209,7 +1209,7 @@
           "lon": -4.6,
           "currency": "GBP",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "Real Time",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -1243,7 +1243,7 @@
           "lon": 12.6,
           "currency": "EUR",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "Real Time",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -1295,7 +1295,7 @@
           "lon": -2.1,
           "currency": "GBP",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "Real Time",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -1410,7 +1410,7 @@
           "lon": 24.6,
           "currency": "EUR",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "Real Time",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -1429,7 +1429,7 @@
           "lon": 9.6,
           "currency": "CHF",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "Real Time",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -1448,7 +1448,7 @@
           "lon": 23.9,
           "currency": "EUR",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "Real Time",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -1467,7 +1467,7 @@
           "lon": 6.1,
           "currency": "EUR",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "Real Time",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -1562,7 +1562,7 @@
           "lon": 14.4,
           "currency": "EUR",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "Real Time",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -1600,7 +1600,7 @@
           "lon": 7.4,
           "currency": "EUR",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "Real Time",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -1696,7 +1696,7 @@
           "lon": 5.3,
           "currency": "EUR",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "Real Time",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -1917,7 +1917,7 @@
           "lon": -8.2,
           "currency": "EUR",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "Real Time",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -2004,7 +2004,7 @@
           "lon": 12.5,
           "currency": "EUR",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "Real Time",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -2104,7 +2104,7 @@
           "lon": 19.7,
           "currency": "EUR",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "Real Time",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -2123,7 +2123,7 @@
           "lon": 14.9,
           "currency": "EUR",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "Real Time",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -2177,7 +2177,7 @@
           "lon": -3.7,
           "currency": "EUR",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "Real Time",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -2252,7 +2252,7 @@
           "lon": 8.2,
           "currency": "CHF",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "Real Time",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -2545,7 +2545,7 @@
           "lon": 20,
           "currency": "EUR",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "T+0",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -2582,7 +2582,7 @@
           "lon": 14.6,
           "currency": "EUR",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "T+0",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -2603,7 +2603,7 @@
           "lon": 4.5,
           "currency": "EUR",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "T+0",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -2659,7 +2659,7 @@
           "lon": 25.5,
           "currency": "EUR",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "T+0",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -2741,7 +2741,7 @@
           "lon": 15.2,
           "currency": "EUR",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "T+0",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -2760,7 +2760,7 @@
           "lon": 33.4,
           "currency": "EUR",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "T+0",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -2795,7 +2795,7 @@
           "lon": 25,
           "currency": "EUR",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "T+0",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -2814,7 +2814,7 @@
           "lon": 25.7,
           "currency": "EUR",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "T+0",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -2835,7 +2835,7 @@
           "lon": 2.2,
           "currency": "EUR",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "T+0",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -2856,7 +2856,7 @@
           "lon": 10.4,
           "currency": "EUR",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "T+0",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -2893,7 +2893,7 @@
           "lon": 21.8,
           "currency": "EUR",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "T+0",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -2976,7 +2976,7 @@
           "lon": -8.2,
           "currency": "EUR",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "T+0",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -3013,7 +3013,7 @@
           "lon": 12.6,
           "currency": "EUR",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "T+0",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -3050,7 +3050,7 @@
           "lon": 24.6,
           "currency": "EUR",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "T+0",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -3069,7 +3069,7 @@
           "lon": 23.9,
           "currency": "EUR",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "T+0",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -3088,7 +3088,7 @@
           "lon": 6.1,
           "currency": "EUR",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "T+0",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -3107,7 +3107,7 @@
           "lon": 14.4,
           "currency": "EUR",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "T+0",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -3142,7 +3142,7 @@
           "lon": 7.4,
           "currency": "EUR",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "T+0",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -3177,7 +3177,7 @@
           "lon": 5.3,
           "currency": "EUR",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "T+0",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -3230,7 +3230,7 @@
           "lon": -8.2,
           "currency": "EUR",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "T+0",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -3251,7 +3251,7 @@
           "lon": 12.5,
           "currency": "EUR",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "T+0",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -3270,7 +3270,7 @@
           "lon": 19.7,
           "currency": "EUR",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "T+0",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -3289,7 +3289,7 @@
           "lon": 14.9,
           "currency": "EUR",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "T+0",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
@@ -3308,7 +3308,7 @@
           "lon": -3.7,
           "currency": "EUR",
           "region": "Europe",
-          "delivery": "Real Time / T+0",
+          "delivery": "T+0",
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
