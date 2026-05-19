@@ -627,7 +627,10 @@
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
-              "schemes": []
+              "schemes": [
+                "SEPA Instant",
+                "SEPA Credit Transfer"
+              ]
             },
             {
               "type": "SWIFT Bank Transfer"
@@ -646,7 +649,10 @@
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
-              "schemes": []
+              "schemes": [
+                "SEPA Instant",
+                "SEPA Credit Transfer"
+              ]
             },
             {
               "type": "SWIFT Bank Transfer"
@@ -803,7 +809,10 @@
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
-              "schemes": []
+              "schemes": [
+                "SEPA Instant",
+                "SEPA Credit Transfer"
+              ]
             },
             {
               "type": "SWIFT Bank Transfer"
@@ -999,7 +1008,10 @@
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
-              "schemes": []
+              "schemes": [
+                "SEPA Instant",
+                "SEPA Credit Transfer"
+              ]
             },
             {
               "type": "SWIFT Bank Transfer"
@@ -1414,7 +1426,10 @@
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
-              "schemes": []
+              "schemes": [
+                "SEPA Instant",
+                "SEPA Credit Transfer"
+              ]
             },
             {
               "type": "SWIFT Bank Transfer"
@@ -1452,7 +1467,10 @@
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
-              "schemes": []
+              "schemes": [
+                "SEPA Instant",
+                "SEPA Credit Transfer"
+              ]
             },
             {
               "type": "SWIFT Bank Transfer"
@@ -1471,7 +1489,10 @@
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
-              "schemes": []
+              "schemes": [
+                "SEPA Instant",
+                "SEPA Credit Transfer"
+              ]
             },
             {
               "type": "SWIFT Bank Transfer"
@@ -1566,7 +1587,10 @@
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
-              "schemes": []
+              "schemes": [
+                "SEPA Instant",
+                "SEPA Credit Transfer"
+              ]
             },
             {
               "type": "SWIFT Bank Transfer"
@@ -1604,7 +1628,10 @@
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
-              "schemes": []
+              "schemes": [
+                "SEPA Instant",
+                "SEPA Credit Transfer"
+              ]
             },
             {
               "type": "SWIFT Bank Transfer"
@@ -2008,7 +2035,10 @@
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
-              "schemes": []
+              "schemes": [
+                "SEPA Instant",
+                "SEPA Credit Transfer"
+              ]
             },
             {
               "type": "SWIFT Bank Transfer"
@@ -2108,7 +2138,10 @@
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
-              "schemes": []
+              "schemes": [
+                "SEPA Instant",
+                "SEPA Credit Transfer"
+              ]
             },
             {
               "type": "SWIFT Bank Transfer"
@@ -2127,7 +2160,10 @@
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
-              "schemes": []
+              "schemes": [
+                "SEPA Instant",
+                "SEPA Credit Transfer"
+              ]
             },
             {
               "type": "SWIFT Bank Transfer"
@@ -2736,7 +2772,9 @@
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
-              "schemes": []
+              "schemes": [
+                "SEPA Credit Transfer"
+              ]
             }
           ]
         },
@@ -2752,7 +2790,9 @@
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
-              "schemes": []
+              "schemes": [
+                "SEPA Credit Transfer"
+              ]
             }
           ]
         },
@@ -2784,7 +2824,9 @@
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
-              "schemes": []
+              "schemes": [
+                "SEPA Credit Transfer"
+              ]
             }
           ]
         },
@@ -2870,7 +2912,9 @@
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
-              "schemes": []
+              "schemes": [
+                "SEPA Credit Transfer"
+              ]
             }
           ]
         },
@@ -3018,7 +3062,9 @@
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
-              "schemes": []
+              "schemes": [
+                "SEPA Credit Transfer"
+              ]
             }
           ]
         },
@@ -3034,7 +3080,9 @@
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
-              "schemes": []
+              "schemes": [
+                "SEPA Credit Transfer"
+              ]
             }
           ]
         },
@@ -3050,7 +3098,9 @@
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
-              "schemes": []
+              "schemes": [
+                "SEPA Credit Transfer"
+              ]
             }
           ]
         },
@@ -3066,7 +3116,9 @@
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
-              "schemes": []
+              "schemes": [
+                "SEPA Credit Transfer"
+              ]
             }
           ]
         },
@@ -3098,7 +3150,9 @@
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
-              "schemes": []
+              "schemes": [
+                "SEPA Credit Transfer"
+              ]
             }
           ]
         },
@@ -3198,7 +3252,9 @@
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
-              "schemes": []
+              "schemes": [
+                "SEPA Credit Transfer"
+              ]
             }
           ]
         },
@@ -3214,7 +3270,9 @@
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
-              "schemes": []
+              "schemes": [
+                "SEPA Credit Transfer"
+              ]
             }
           ]
         },
@@ -3230,7 +3288,9 @@
           "paymentMethods": [
             {
               "type": "Domestic Bank Transfer",
-              "schemes": []
+              "schemes": [
+                "SEPA Credit Transfer"
+              ]
             }
           ]
         },
